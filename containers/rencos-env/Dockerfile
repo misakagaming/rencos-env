@@ -40,12 +40,13 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get purge --auto-remove -y && \
     apt-get clean
 
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1
-RUN update-alternatives --set python3 /usr/bin/python3.9
-RUN python3 -m pip install --upgrade pip
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1
+RUN update-alternatives --set python /usr/bin/python3.9
+RUN python --version
+RUN python -m pip install --upgrade pip
 
-RUN python3 -m venv /opt/python3/venv/base
-RUN python3 --version
+RUN python -m venv /opt/python3/venv/base
+RUN python --version
 
 
 COPY requirements.txt /opt/python3/venv/base/
