@@ -11,7 +11,7 @@ ENV LANG=C.UTF-8
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
-        software-properties-common gpg-agent update-alternatives && \
+        software-properties-common gpg-agent && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt-get update && \
     apt-get remove -y software-properties-common && \
