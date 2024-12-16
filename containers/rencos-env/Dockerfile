@@ -1,8 +1,8 @@
 FROM ubuntu:focal
 
 # Python Version x.y
-ARG PYTHON_VERSION=3.6
-ARG PYLUCENE_VERSION=7.7.1
+ARG PYTHON_VERSION=3.9
+ARG PYLUCENE_VERSION=8.11.0
 
 # Uncomment to install specific version of poetry
 ENV LANG=C.UTF-8
