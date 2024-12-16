@@ -21,10 +21,21 @@ RUN apt-get update && \
 RUN which gpg-agent
 
 # Install Python
-RUN apt-get install -y --no-install-recommends \
-        "python$PYTHON_VERSION-dev" \
-        python3-setuptools \
-        python3-pip && \
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends \
+        git \
+        wget \
+        cmake \
+        ninja-build \
+        build-essential \
+        python3 \
+        python3-dev \
+        python3-pip \
+        python3-venv \
+        python-is-python3 \
+		libstdc++6 \
+		gcc-multilib\
+		libc6 &&\
     apt-get remove -y gpg-agent && \
     apt-get purge --auto-remove -y && \
     apt-get clean
