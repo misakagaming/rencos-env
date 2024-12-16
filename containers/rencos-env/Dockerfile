@@ -39,7 +39,9 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get remove -y gpg-agent && \
     apt-get purge --auto-remove -y && \
     apt-get clean
-	
+
+
+RUN ls /opt | grep "python"
 RUN python3.9 -m pip install --upgrade pip && \
     python3.9 -m venv /opt/python3.9/venv/base
 	
