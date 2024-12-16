@@ -70,9 +70,10 @@ RUN apt-get install -y --no-install-recommends \
     
 RUN ls /usr/bin/ | grep "python"
 RUN which python$PYTHON_VERSION
+RUN python --version
 RUN ln -s $(which python$PYTHON_VERSION) /usr/bin/python 
 
-RUN python --version
+
 
 WORKDIR /usr/lib/jvm/default-java/jre/lib
 RUN ln -s ../../lib amd64
