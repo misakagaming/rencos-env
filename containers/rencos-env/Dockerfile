@@ -40,7 +40,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get purge --auto-remove -y && \
     apt-get clean
 
-
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.9
 RUN update-alternatives  --set python /usr/bin/python3.9
 RUN python3 -m pip install --upgrade pip
 
