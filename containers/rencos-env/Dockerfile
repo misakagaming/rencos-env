@@ -40,13 +40,11 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get purge --auto-remove -y && \
     apt-get clean
 
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1
-RUN update-alternatives --set python /usr/bin/python3.9
-RUN python --version
-RUN python -m pip install --upgrade pip
+RUN python3.9 --version
+RUN python3.9 -m pip install --upgrade pip
 
-RUN python -m venv /opt/python3/venv/base
-RUN python --version
+RUN python3.9 -m venv /opt/python3/venv/base
+RUN python3.9 --version
 
 
 COPY requirements.txt /opt/python3/venv/base/
@@ -75,7 +73,7 @@ RUN apt-get install -y --no-install-recommends \
 RUN ls /usr/bin/ | grep "python"
 RUN which python$PYTHON_VERSION
 RUN python3 --version
-RUN ln -s $(which python$PYTHON_VERSION) /usr/bin/python 
+#RUN ln -s $(which python$PYTHON_VERSION) /usr/bin/python 
 
 
 
@@ -100,9 +98,9 @@ RUN curl https://dlcdn.apache.org/lucene/pylucene/pylucene-$PYLUCENE_VERSION-src
 ENV PREFIX_PYTHON=/usr \
     JCC_JDK=/usr/lib/jvm/default-java \
     ANT=ant \
-    JCC='python -m jcc' \
+    JCC='python3.9 -m jcc' \
     NUM_FILES=10 \
-    PYTHON=python \
+    PYTHON=python3.9 \
     NO_SHARED=1
 
 RUN cd "pylucene-$PYLUCENE_VERSION/lucene-java-$PYLUCENE_VERSION/lucene" && \
@@ -112,11 +110,11 @@ RUN cd "pylucene-$PYLUCENE_VERSION/lucene-java-$PYLUCENE_VERSION/lucene" && \
 
 RUN cd "pylucene-$PYLUCENE_VERSION/jcc" && \
     ls -la && \
-    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python setup.py build && \
-    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python setup.py install && \
+    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3.9 setup.py build && \
+    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3.9 setup.py install && \
     cd .. && \
-    make JCC="python -m jcc" ANT=ant PYTHON=python NUM_FILES=8&& \
-    make install JCC="python -m jcc" ANT=ant PYTHON=python NUM_FILES=8 && \
+    make JCC="python3.9 -m jcc" ANT=ant PYTHON=python3.9 NUM_FILES=8&& \
+    make install JCC="python3.9 -m jcc" ANT=ant PYTHON=python3.9 NUM_FILES=8 && \
     cd ../../
 
 RUN apt-get remove -y gpg-agent ant jcc build-essential && \
