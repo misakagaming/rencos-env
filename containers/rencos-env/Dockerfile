@@ -40,15 +40,14 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get purge --auto-remove -y && \
     apt-get clean
 
-RUN python3.9 --version
-RUN python3.9 -m pip install --upgrade pip
+RUN python3 --version
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m venv /opt/python3/venv/base
+RUN python3 --version
 
-RUN python3.9 -m venv /usr/bin/python3.9/venv/base
-RUN python3.9 --version
 
-
-COPY requirements.txt /usr/bin/python3.9/venv/base/
-RUN /usr/bin/python3.9/venv/base/bin/python3 -m pip install --no-cache-dir -r /usr/bin/python3.9/venv/base/requirements.txt
+COPY requirements.txt /opt/python3/venv/base/
+RUN /opt/python3/venv/base/bin/python3 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
 
 COPY rencos-master .
 
