@@ -40,8 +40,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get purge --auto-remove -y && \
     apt-get clean
 	
-RUN python3 -m pip install --upgrade pip && \
-    python3 -m venv /opt/python3/venv/base
+RUN python3.9 -m pip install --upgrade pip && \
+    python3.9 -m venv /opt/python3.9/venv/base
 	
 
 
@@ -70,7 +70,7 @@ RUN apt-get install -y --no-install-recommends \
     
 RUN ls /usr/bin/ | grep "python"
 RUN which python$PYTHON_VERSION
-RUN python --version
+RUN python3 --version
 RUN ln -s $(which python$PYTHON_VERSION) /usr/bin/python 
 
 
