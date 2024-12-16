@@ -1,7 +1,7 @@
 FROM ubuntu:focal
 
 # Python Version x.y
-ARG PYTHON_VERSION=3.10
+ARG PYTHON_VERSION=3.8
 ARG PYLUCENE_VERSION=7.4.0
 
 # Uncomment to install specific version of poetry
