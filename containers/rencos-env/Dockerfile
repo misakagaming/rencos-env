@@ -67,10 +67,10 @@ RUN apt-get install -y --no-install-recommends \
     git \
     default-jdk 
     
-RUN ls /usr/bin/ | grep "python"
-RUN ln -s /usr/bin/python$PYTHON_VERSION /usr/bin/python
+#RUN ls /usr/bin/ | grep "python"
+#RUN ln -s /usr/bin/python $(which python$PYTHON_VERSION) 
 
-RUN which python$PYTHON_VERSION && which python && python --version
+#RUN which python$PYTHON_VERSION && which python && python --version
 
 WORKDIR /usr/lib/jvm/default-java/jre/lib
 RUN ln -s ../../lib amd64
