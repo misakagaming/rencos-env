@@ -1,4 +1,4 @@
 #!/bin/bash
-source /usr/bin/python3.9/venv/base/bin/activate
+source /usr/bin/python3/venv/base/bin/activate
 echo "nice"
 exec "$@"
