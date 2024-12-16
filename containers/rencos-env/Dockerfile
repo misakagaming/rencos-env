@@ -29,6 +29,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         ninja-build \
         build-essential \
         "python$PYTHON_VERSION-dev" \
+		python3-setuptools \
         python3-pip \
         python3-venv \
         python-is-python3 \
