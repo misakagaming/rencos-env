@@ -41,9 +41,11 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get clean
 
 
+
+RUN python3 -m pip install --upgrade pip
+RUN python3 --version
 RUN ls /opt/
-RUN python3.9 -m pip install --upgrade pip && \
-    python3.9 -m venv /opt/python3.9/venv/base
+RUN python3 -m venv /opt/python3/venv/base
 	
 
 
