@@ -11,7 +11,7 @@ ENV LANG=C.UTF-8
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
-        software-properties-common gpg-agent && \
+        software-properties-common gpg-agent update-alternatives && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt-get update && \
     apt-get remove -y software-properties-common && \
@@ -41,12 +41,12 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get clean
 
 
-
+RUN update-alternatives  --set python /usr/bin/python3.9
 RUN python3 -m pip install --upgrade pip
-RUN python3 --version
-RUN ls /opt/
+
+RUN ls /usr/bin/
 RUN python3 -m venv /opt/python3/venv/base
-	
+RUN python3 --version
 
 
 COPY requirements.txt /opt/python3/venv/base/
