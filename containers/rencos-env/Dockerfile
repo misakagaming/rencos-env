@@ -45,12 +45,12 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1
 RUN update-alternatives  --config python
 RUN python -m pip install --upgrade pip
 
-RUN python -m venv /opt/python3/venv/base
+RUN python -m venv /opt/python/venv/base
 RUN python --version
 
 
-COPY requirements.txt /opt/python3/venv/base/
-RUN /opt/python3/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
+COPY requirements.txt /opt/python/venv/base/
+RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
 COPY rencos-master .
 
