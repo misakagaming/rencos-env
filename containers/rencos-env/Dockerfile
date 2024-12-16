@@ -41,16 +41,16 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get clean
 
 RUN ls /usr/bin/
-RUN update-alternatives --install /usr/bin/python python3 /usr/bin/python3.9 1
-RUN update-alternatives  --config python3
-RUN python3 -m pip install --upgrade pip
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1
+RUN update-alternatives  --config python
+RUN python -m pip install --upgrade pip
 
-RUN python3 -m venv /opt/python3/venv/base
-RUN python3 --version
+RUN python -m venv /opt/python3/venv/base
+RUN python --version
 
 
 COPY requirements.txt /opt/python3/venv/base/
-RUN /opt/python3/venv/base/bin/python3 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
+RUN /opt/python3/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
 
 COPY rencos-master .
 
@@ -74,7 +74,7 @@ RUN apt-get install -y --no-install-recommends \
     
 RUN ls /usr/bin/ | grep "python"
 RUN which python$PYTHON_VERSION
-RUN python3 --version
+RUN python --version
 RUN ln -s $(which python$PYTHON_VERSION) /usr/bin/python 
 
 
