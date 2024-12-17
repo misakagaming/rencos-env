@@ -30,8 +30,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         build-essential \
         "python$PYTHON_VERSION-dev" \
 		"python$PYTHON_VERSION-distutils" \
-		"python$PYTHON_VERSION-setuptools" \
-        "python$PYTHON_VERSION-pip" \
+		python3-setuptools \
+        python3-pip \
         "python$PYTHON_VERSION-venv" \
         python-is-python3 \
 		libstdc++6 \
