@@ -117,7 +117,7 @@ RUN python3.6 --version
 
 
 COPY requirements.txt /opt/python3/venv/base/
-RUN /opt/python3/venv/base/bin/python3.6 -m pip install --no-cache-dir torch=0.4.1 torchvision==0.2.1 cuda92 -c pytorch
+RUN /opt/python3/venv/base/bin/python3.6 -m pip install --no-cache-dir torch==0.4.1 torchvision==0.2.1 -f https://download.pytorch.org/whl/cu92/torch_stable.html
 RUN /opt/python3/venv/base/bin/python3.6 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
 
 COPY rencos-master .
