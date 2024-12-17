@@ -1,7 +1,6 @@
-torch
-torchvision
-torchaudio
-torchtext
+torch==0.4.1
+torchvision==0.2.1
+torchtext==0.3.1
 nltk==3.2.4
 ConfigArgParse==0.14.0
 numpy
