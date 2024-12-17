@@ -4,3 +4,5 @@ ConfigArgParse==0.14.0
 numpy
 pandas
 gdown
+scikit-image
+scikit-learn
