@@ -43,6 +43,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 RUN python3.6 --version
 RUN python3.6 -m pip install --upgrade pip
+RUN apt install libjpeg-dev zlib1g-dev
 RUN python3.6 -m pip install --upgrade Pillow
 
 # ======================== START OF ADDITIONAL INSTALLATION ========================
