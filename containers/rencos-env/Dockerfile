@@ -1,8 +1,9 @@
-FROM ubuntu:focal
+#FROM ubuntu:focal
+FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 
 # Python Version x.y
 ARG PYTHON_VERSION=3.6
-ARG PYLUCENE_VERSION=8.11.0
+ARG PYLUCENE_VERSION=7.4.0
 
 # Uncomment to install specific version of poetry
 ENV LANG=C.UTF-8
