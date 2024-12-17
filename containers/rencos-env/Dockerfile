@@ -1,5 +1,6 @@
 #FROM ubuntu:focal
 FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Python Version x.y
 ARG PYTHON_VERSION=3.6
