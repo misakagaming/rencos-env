@@ -1,7 +1,7 @@
 FROM ubuntu:focal
 
 # Python Version x.y
-ARG PYTHON_VERSION=3.8
+ARG PYTHON_VERSION=3.6
 ARG PYLUCENE_VERSION=8.11.0
 
 # Uncomment to install specific version of poetry
@@ -40,8 +40,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get purge --auto-remove -y && \
     apt-get clean
 
-RUN python3 --version
-RUN python3 -m pip install --upgrade pip
+RUN python3.6 --version
+RUN python3.6 -m pip install --upgrade pip
 
 
 # ======================== START OF ADDITIONAL INSTALLATION ========================
@@ -83,7 +83,7 @@ RUN curl https://dlcdn.apache.org/lucene/pylucene/pylucene-$PYLUCENE_VERSION-src
 ENV PREFIX_PYTHON=/usr \
     JCC_JDK=/usr/lib/jvm/default-java \
     ANT=ant \
-    JCC='python3 -m jcc' \
+    JCC='python3.6 -m jcc' \
     NUM_FILES=10 \
     PYTHON=python3 \
     NO_SHARED=1
@@ -95,11 +95,11 @@ RUN cd "pylucene-$PYLUCENE_VERSION/lucene-java-$PYLUCENE_VERSION/lucene" && \
 
 RUN cd "pylucene-$PYLUCENE_VERSION/jcc" && \
     ls -la && \
-    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3 setup.py build && \
-    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3 setup.py install && \
+    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3.6 setup.py build && \
+    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3.6 setup.py install && \
     cd .. && \
-    make JCC="python3 -m jcc" ANT=ant PYTHON=python3 NUM_FILES=8&& \
-    make install JCC="python3 -m jcc" ANT=ant PYTHON=python3 NUM_FILES=8 && \
+    make JCC="python3.6 -m jcc" ANT=ant PYTHON=python3.6 NUM_FILES=8&& \
+    make install JCC="python3.6 -m jcc" ANT=ant PYTHON=python3.6 NUM_FILES=8 && \
     cd ../../
 
 RUN apt-get remove -y gpg-agent ant jcc build-essential && \
@@ -109,13 +109,13 @@ RUN apt-get remove -y gpg-agent ant jcc build-essential && \
 WORKDIR /usr/src
 RUN rm -rf pylucene
 
-RUN python3 -m venv /opt/python3/venv/base
-RUN python3 --version
+RUN python3.6 -m venv /opt/python3/venv/base
+RUN python3.6 --version
 
 
 COPY requirements.txt /opt/python3/venv/base/
-RUN /opt/python3/venv/base/bin/python3 -m pip install --no-cache-dir torch==0.4.1 torchvision==0.2.1 -f https://download.pytorch.org/whl/cpu/torch_stable.html
-RUN /opt/python3/venv/base/bin/python3 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
+RUN /opt/python3/venv/base/bin/python3.6 -m pip install --no-cache-dir torch==0.4.1 torchvision==0.2.1 -f https://download.pytorch.org/whl/cpu/torch_stable.html
+RUN /opt/python3/venv/base/bin/python3.6 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
 
 COPY rencos-master .
 
