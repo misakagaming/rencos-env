@@ -4,8 +4,7 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Python Version x.y
 ARG PYTHON_VERSION=3.6
-ARG PYLUCENE_VERSION=8.11.0
-
+ARG PYLUCENE_VERSION=7.7.1
 # Uncomment to install specific version of poetry
 ENV LANG=C.UTF-8
 
@@ -119,7 +118,7 @@ RUN python3.6 --version
 
 
 COPY requirements.txt /opt/python3/venv/base/
-RUN /opt/python3/venv/base/bin/python3.6 -m pip install --no-cache-dir torch==0.4.1 torchvision==0.2.1 -f https://download.pytorch.org/whl/cu92/torch_stable.html
+RUN /opt/python3/venv/base/bin/python3.6 -m pip install --no-cache-dir torch==0.4.1 torchvision==0.2.1 -f https://download.pytorch.org/whl/cu100/torch_stable.html
 RUN /opt/python3/venv/base/bin/python3.6 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
 
 COPY rencos-master .
