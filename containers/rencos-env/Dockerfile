@@ -1,5 +1,5 @@
 #FROM ubuntu:focal
-FROM nvidia/cuda:8.0-ubuntu16.04
+FROM nvidia/cuda:8.0-cudnn5-runtime-ubuntu16.04
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
