@@ -1,5 +1,5 @@
 #FROM ubuntu:focal
-FROM nvidia/cuda:8.0.0-devel-ubuntu20.04
+FROM cogniac/nvidia-cuda:8.0-cudnn7-devel-ubuntu16.04-20190822
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
