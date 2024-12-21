@@ -4,7 +4,7 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Python Version x.y
 ARG PYTHON_VERSION=3.6
-ARG PYLUCENE_VERSION=7.7.1
+ARG PYLUCENE_VERSION=8.11.0
 # Uncomment to install specific version of poetry
 ENV LANG=C.UTF-8
 
@@ -94,6 +94,11 @@ ENV PREFIX_PYTHON=/usr \
     PYTHON=python3.6 \
     NO_SHARED=1
 
+RUN cd "pylucene-$PYLUCENE_VERSION/lucene-java-$PYLUCENE_VERSION/lucene" && \
+    ant ivy-bootstrap && \
+    ant && \
+    cd ../../../
+
 RUN cd "pylucene-$PYLUCENE_VERSION/jcc" && \
     ls -la && \
     NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3.6 setup.py build && \
@@ -109,6 +114,8 @@ RUN apt-get remove -y gpg-agent ant jcc build-essential && \
 
 WORKDIR /usr/src
 RUN rm -rf pylucene
+
+WORKDIR /
 
 RUN python3.6 -m venv /opt/python3/venv/base
 RUN python3.6 --version
