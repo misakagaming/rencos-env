@@ -48,8 +48,6 @@ RUN python3.6 --version
 RUN python3.6 -m pip install --upgrade pip
 RUN python3.6 -m pip install --upgrade Pillow
 
-RUN pwd
-
 # ======================== START OF ADDITIONAL INSTALLATION ========================
 
 # Install Java
@@ -93,6 +91,11 @@ ENV PREFIX_PYTHON=/usr \
     NUM_FILES=10 \
     PYTHON=python3.6 \
     NO_SHARED=1
+
+RUN cd "pylucene-$PYLUCENE_VERSION/lucene-java-$PYLUCENE_VERSION/lucene" && \
+    ant ivy-bootstrap && \
+    ant && \
+    cd ../../../
 
 RUN cd "pylucene-$PYLUCENE_VERSION/jcc" && \
     ls -la && \
