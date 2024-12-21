@@ -116,6 +116,8 @@ RUN apt-get remove -y gpg-agent ant jcc build-essential && \
 WORKDIR /usr/src
 RUN rm -rf pylucene
 
+RUN python3 -c "import lucene; lucene.initVM()"
+
 WORKDIR /
 
 RUN python3 -m venv /opt/python3/venv/base
