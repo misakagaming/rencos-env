@@ -53,9 +53,8 @@ RUN pwd
 
 RUN python3.6 -m venv /opt/python3/venv/base
 
-
-
-RUN source /opt/python3/venv/base/bin/activate
+ENV VIRTUAL_ENV /opt/python3/venv
+ENV PATH /opt/python3/venv/bin:$PATH  
 RUN python3 --version
 
 # ======================== START OF ADDITIONAL INSTALLATION ========================
