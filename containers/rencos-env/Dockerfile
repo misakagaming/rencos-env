@@ -89,7 +89,7 @@ ENV PREFIX_PYTHON=/usr \
     ANT=ant \
     JCC='python3.6 -m jcc' \
     NUM_FILES=10 \
-    PYTHON=python3 \
+    PYTHON=python3.6 \
     NO_SHARED=1
 
 RUN cd "pylucene-$PYLUCENE_VERSION/lucene-java-$PYLUCENE_VERSION/lucene" && \
