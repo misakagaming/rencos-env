@@ -1,5 +1,5 @@
 #FROM ubuntu:focal
-FROM nvidia/cuda:8.0-cudnn5-runtime-ubuntu16.04
+FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
@@ -123,7 +123,7 @@ RUN python3.6 --version
 
 
 COPY requirements.txt /opt/python3/venv/base/
-RUN /opt/python3/venv/base/bin/python3.6 -m pip install --no-cache-dir torch==0.4.1 torchvision==0.2.1 -f https://download.pytorch.org/whl/cu80/torch_stable.html
+RUN /opt/python3/venv/base/bin/python3.6 -m pip install --no-cache-dir -v "torch==1.9.0+cu111" "torchvision==0.10.0+cu111" "torchaudio==0.9.0" -f https://download.pytorch.org/whl/torch_stable.html
 RUN /opt/python3/venv/base/bin/python3.6 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
 
 COPY rencos-master .
