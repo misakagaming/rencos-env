@@ -1,5 +1,5 @@
 #FROM ubuntu:focal
-FROM nvidia/cuda:11.0.3-devel-ubuntu16.04
+FROM nvidia/cuda:12.1.0-devel-ubuntu18.04
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
