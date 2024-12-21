@@ -123,7 +123,7 @@ RUN python3 --version
 
 
 COPY requirements.txt /opt/python3/venv/base/
-RUN /opt/python3/venv/base/bin/python3 -m pip install --no-cache-dir -v "torch==1.9.0+cu111" "torchvision==0.10.0+cu111" "torchaudio==0.9.0" -f https://download.pytorch.org/whl/torch_stable.html
+
 RUN /opt/python3/venv/base/bin/python3 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
 
 COPY rencos-master .
