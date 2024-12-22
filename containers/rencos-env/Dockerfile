@@ -11,8 +11,6 @@ ARG PYLUCENE_VERSION=7.4.0
 # Uncomment to install specific version of poetry
 ENV LANG=C.UTF-8
 
-
-
 # Install Python
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
@@ -49,7 +47,6 @@ RUN export TMPDIR=`pwd`/tmp
 RUN apt-get install -y --no-install-recommends \
     build-essential \
     ant \
-    jcc \
     curl \
     git \
     default-jdk 
@@ -79,6 +76,11 @@ RUN apt-get install -y --no-install-recommends \
 
 WORKDIR /usr/src/pylucene
 RUN curl https://archive.apache.org/dist/lucene/pylucene/pylucene-$PYLUCENE_VERSION-src.tar.gz | tar -xz
+
+RUN cd "pylucene-$PYLUCENE_VERSION/jcc" && \
+	python setup.py build && \
+	python setup.py install && \
+    cd ../../
 
 
 ENV PREFIX_PYTHON=/usr \
