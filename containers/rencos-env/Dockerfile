@@ -69,6 +69,8 @@ RUN ln -sf $(which python$PYTHON_VERSION) /usr/bin/python
 
 RUN python --version
 
+RUN python -m pip install --upgrade pip
+
 RUN which python$PYTHON_VERSION && which python && python --version
 
 WORKDIR /usr/lib/jvm/default-java/jre/lib
