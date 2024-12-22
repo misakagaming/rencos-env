@@ -51,7 +51,6 @@ RUN python3.6 -m pip install --upgrade Pillow
 
 RUN pwd
 
-RUN mkdir tmp
 RUN export TMPDIR=`pwd`/tmp
 
 #RUN python3.6 -m venv /opt/python3/venv/base
