@@ -30,7 +30,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 		python3-setuptools \
         python3-pip \
         "python$PYTHON_VERSION-venv" \
-        python-is-python3 \
 		libstdc++6 \
 		gcc-multilib\
 		libjpeg-dev\
