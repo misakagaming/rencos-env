@@ -39,9 +39,9 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 		libc6 \
 		 && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
-RUN python3.6 --version
-RUN python3.6 -m pip install --upgrade pip
-RUN python3.6 -m pip install --upgrade Pillow
+RUN python3 --version
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --upgrade Pillow
 
 #RUN pwd
 
