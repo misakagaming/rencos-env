@@ -20,7 +20,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         build-essential \
 		checkinstall \
 		software-properties-common \
-		nvidia-cuda-toolkit \
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
 
@@ -145,7 +144,7 @@ RUN /opt/python/venv/base/bin/python -m pip install --upgrade pip
 
 COPY requirements.txt /opt/python/venv/base/
 
-RUN /opt/python/venv/base/bin/python -m pip install -v "torch==0.4.1" -f https://download.pytorch.org/whl/cu92/torch_stable.html
+RUN /opt/python/venv/base/bin/python -m pip install -v "torch==1.7.0" -f https://download.pytorch.org/whl/cu110/torch_stable.html
 
 RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
