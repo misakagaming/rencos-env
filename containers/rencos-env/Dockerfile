@@ -11,7 +11,6 @@ ARG PYLUCENE_VERSION=7.4.0
 # Uncomment to install specific version of poetry
 ENV LANG=C.UTF-8
 
-# Install Python
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
         git \
@@ -19,6 +18,16 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         cmake \
         ninja-build \
         build-essential \
+		checkinstall \
+		software-properties-common \
+    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
+	
+RUN add-apt-repository ppa:deadsnakes/ppa
+
+
+# Install Python
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends \
 		python3 \
 		python3-dev \
 		python3-setuptools \
@@ -77,10 +86,6 @@ RUN apt-get install -y --no-install-recommends \
 WORKDIR /usr/src/pylucene
 RUN curl https://archive.apache.org/dist/lucene/pylucene/pylucene-$PYLUCENE_VERSION-src.tar.gz | tar -xz
 
-RUN cd "pylucene-$PYLUCENE_VERSION/jcc" && \
-	python setup.py build && \
-	python setup.py install && \
-    cd ../../
 
 
 ENV PREFIX_PYTHON=/usr \
