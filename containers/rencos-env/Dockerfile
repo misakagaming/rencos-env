@@ -67,9 +67,9 @@ RUN apt-get install -y --no-install-recommends \
     default-jdk 
     
 #RUN ls /usr/bin/ | grep "python"
-#RUN which python$PYTHON_VERSION
+RUN which python$PYTHON_VERSION
 #RUN python3 --version
-RUN ln -s $(which python3.6) /usr/bin/python 
+#RUN ln -s $(which python3.6) /usr/bin/python 
 
 
 
