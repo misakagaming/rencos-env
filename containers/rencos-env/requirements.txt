@@ -1,3 +1,4 @@
+torch==1.0.0
 torchtext==0.3.1
 nltk==3.2.4
 ConfigArgParse==0.14.0
