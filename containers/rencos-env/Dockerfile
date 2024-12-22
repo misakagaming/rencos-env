@@ -1,5 +1,4 @@
-#FROM ubuntu:focal
-FROM nvidia/cuda:9.0-base-ubuntu16.04
+FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 FROM python:3.6-slim
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
