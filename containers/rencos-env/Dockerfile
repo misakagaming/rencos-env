@@ -12,7 +12,6 @@ ARG PYLUCENE_VERSION=7.4.0
 RUN nvcc --version
 
 # ADD Python PPA Repository
-# ADD Python PPA Repository
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
@@ -33,7 +32,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         cmake \
         ninja-build \
         build-essential \
-		checkinstall \
         "python$PYTHON_VERSION-dev" \
 		"python$PYTHON_VERSION-distutils" \
 		python3-setuptools \
@@ -74,7 +72,8 @@ RUN apt-get install -y --no-install-recommends \
     ant \
     curl \
     git \
-    default-jdk
+    default-jdk \
+	jcc
     
 RUN ls /usr/bin/ | grep "python"
 RUN ln -sf $(which python$PYTHON_VERSION) /usr/bin/python
