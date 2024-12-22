@@ -1,4 +1,5 @@
-FROM ubuntu:focal
+#FROM ubuntu:focal
+FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 
 # Python Version x.y
 ARG PYTHON_VERSION=3.9
