@@ -3,6 +3,7 @@ FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+ENV CUDA_VISIBLE_DEVICES=1
 
 # Python Version x.y
 ARG PYTHON_VERSION=3.6
@@ -146,6 +147,7 @@ WORKDIR /
 
 RUN python -m pip install --upgrade pip \
     && python -m venv --system-site-packages /opt/python/venv/base
+
 
 	
 	
