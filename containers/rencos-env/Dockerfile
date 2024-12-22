@@ -67,6 +67,8 @@ RUN apt-get install -y --no-install-recommends \
 RUN ls /usr/bin/ | grep "python"
 RUN ln -sf $(which python$PYTHON_VERSION) /usr/bin/python
 
+RUN python --version
+
 RUN which python$PYTHON_VERSION && which python && python --version
 
 WORKDIR /usr/lib/jvm/default-java/jre/lib
@@ -125,7 +127,7 @@ COPY . .
 
 WORKDIR /
 
-	
+
 
 RUN python -m pip install --upgrade pip \
     && python -m venv /opt/python/venv/base
