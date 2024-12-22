@@ -9,7 +9,7 @@ ARG PYLUCENE_VERSION=8.11.0
 
 
 # ADD Python PPA Repository
-RUN apt-get update && \
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
         software-properties-common gpg-agent && \
@@ -22,13 +22,36 @@ RUN apt-get update && \
 RUN which gpg-agent
 
 # Install Python
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends \
+        git \
+        wget \
+        cmake \
+        ninja-build \
+        build-essential \
         "python$PYTHON_VERSION-dev" \
-        python3-setuptools \
-        python3-pip && \
+		"python$PYTHON_VERSION-distutils" \
+		python3-setuptools \
+        python3-pip \
+        "python$PYTHON_VERSION-venv" \
+        python-is-python3 \
+		libstdc++6 \
+		gcc-multilib\
+		libjpeg-dev\
+		zlib1g-dev\
+		libc6 &&\
     apt-get remove -y gpg-agent && \
     apt-get purge --auto-remove -y && \
     apt-get clean
+
+RUN python3 --version
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --upgrade Pillow
+
+RUN pwd
+
+RUN export TMPDIR=`pwd`/tmp
+
 
 # ======================== START OF ADDITIONAL INSTALLATION ========================
 
@@ -102,27 +125,6 @@ COPY . .
 
 WORKDIR /
 
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends \
-        git \
-        wget \
-        cmake \
-        ninja-build \
-        build-essential \
-		checkinstall \
-		software-properties-common \
-    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
-
-
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends \
-		python3-distutils \
-        python3-venv \
-		python-is-python3 \
-		libstdc++6 \
-		gcc-multilib\
-		libc6 \
-		 && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 	
 
 RUN python -m pip install --upgrade pip \
