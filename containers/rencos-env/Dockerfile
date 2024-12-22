@@ -12,6 +12,7 @@ ARG PYLUCENE_VERSION=7.4.0
 RUN nvcc --version
 
 # ADD Python PPA Repository
+# ADD Python PPA Repository
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
@@ -20,7 +21,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get remove -y software-properties-common && \
     apt-get purge --auto-remove -y && \
-    apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
+    apt-get clean
 
 RUN which gpg-agent
 
@@ -46,7 +47,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 		libc6 &&\
     apt-get remove -y gpg-agent && \
     apt-get purge --auto-remove -y && \
-    apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
+    apt-get clean
 
 RUN python3.6 --version
 RUN python3.6 -m pip install --upgrade pip
