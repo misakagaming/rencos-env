@@ -1,5 +1,5 @@
 #FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
-FROM nvidia/cuda:11.0.3-devel-ubuntu18.04
+FROM nvidia/cuda:12.2.0-devel-ubuntu22.04
 
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
@@ -9,6 +9,8 @@ ARG PYTHON_VERSION=3.6
 ARG PYLUCENE_VERSION=7.4.0
 # Uncomment to install specific version of poetry
 ENV LANG=C.UTF-8
+
+RUN nvcc --version
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
