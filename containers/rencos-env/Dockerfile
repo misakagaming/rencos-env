@@ -134,7 +134,7 @@ WORKDIR /
 RUN python -m pip install --upgrade pip \
     && python -m venv /opt/python/venv/base
 	
-#RUN ln -s $(which python$PYTHON_VERSION) /usr/bin/python
+RUN ln -sf /opt/python/venv/base/bin/python /usr/bin/python
 	
 
 
