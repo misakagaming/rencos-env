@@ -1,16 +1,16 @@
 #FROM ubuntu:focal
-FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
+quangbd/dc-python:3.6-cuda9.0-cudnn7-ubuntu16.04
+
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Python Version x.y
-ARG PYTHON_VERSION=3.9
+ARG PYTHON_VERSION=3.6
 ARG PYLUCENE_VERSION=8.11.0
-# Uncomment to install specific version of poetry
-ENV LANG=C.UTF-8
+
 
 # ADD Python PPA Repository
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
+RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
         software-properties-common gpg-agent && \
@@ -23,24 +23,10 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
 RUN which gpg-agent
 
 # Install Python
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends \
-        git \
-        wget \
-        cmake \
-        ninja-build \
-        build-essential \
+RUN apt-get install -y --no-install-recommends \
         "python$PYTHON_VERSION-dev" \
-		"python$PYTHON_VERSION-distutils" \
-		python3-setuptools \
-        python3-pip \
-        "python$PYTHON_VERSION-venv" \
-        python-is-python3 \
-		libstdc++6 \
-		gcc-multilib\
-		libjpeg-dev\
-		zlib1g-dev\
-		libc6 &&\
+        python3-setuptools \
+        python3-pip && \
     apt-get remove -y gpg-agent && \
     apt-get purge --auto-remove -y && \
     apt-get clean
