@@ -1,5 +1,5 @@
 #FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
-FROM nvidia/cuda:11.0.3-devel-ubuntu16.04
+FROM nvidia/cuda:12.1.0-devel-ubuntu18.04
 
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
@@ -26,22 +26,24 @@ RUN add-apt-repository -y ppa:jblgf0/python
 # Install Python
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
-		python3.6 \
-		python3-dev \
+        "python$PYTHON_VERSION-dev" \
+		"python$PYTHON_VERSION-distutils" \
 		python3-setuptools \
         python3-pip \
-		python3-venv \
+        "python$PYTHON_VERSION-venv" \
+        python-is-python3 \
 		libstdc++6 \
 		gcc-multilib\
 		libjpeg-dev\
 		zlib1g-dev\
 		libc6 &&\
+    apt-get remove -y gpg-agent && \
     apt-get purge --auto-remove -y && \
     apt-get clean
 
-RUN python3 --version
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install --upgrade Pillow
+RUN python3.6 --version
+RUN python3.6 -m pip install --upgrade pip
+RUN python3.6 -m pip install --upgrade Pillow
 
 RUN pwd
 
