@@ -131,8 +131,8 @@ WORKDIR /
 
 
 
-RUN python -m pip install --upgrade pip \
-    && python -m venv --system-site-packages /opt/python/venv/base
+#RUN python -m pip install --upgrade pip \
+#    && python -m venv --system-site-packages /opt/python/venv/base
 	
 #RUN ln -sf /opt/python/venv/base/bin/python /usr/bin/python
 	
@@ -141,7 +141,7 @@ RUN python -m pip install --upgrade pip \
 #COPY requirements.txt /opt/python/venv/base/
 #RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
-RUN /opt/python/venv/base/bin/python -c "import lucene; lucene.initVM()"
+#RUN /opt/python/venv/base/bin/python -c "import lucene; lucene.initVM()"
 
 COPY rencos-master .
 
