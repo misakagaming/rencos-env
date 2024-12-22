@@ -25,7 +25,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 # Install Python
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
-		python3 \
+		python3.6 \
 		python3-dev \
 		python3-setuptools \
         python3-pip \
