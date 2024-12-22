@@ -11,16 +11,6 @@ ARG PYLUCENE_VERSION=7.4.0
 # Uncomment to install specific version of poetry
 ENV LANG=C.UTF-8
 
-# ADD Python PPA Repository
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
-    apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends \
-        software-properties-common && \
-    add-apt-repository ppa:deadsnakes/ppa && \
-    apt-get update && \
-    apt-get remove -y software-properties-common && \
-    apt-get purge --auto-remove -y && \
-    apt-get clean
 
 
 # Install Python
@@ -31,8 +21,11 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         cmake \
         ninja-build \
         build-essential \
+		python3 \
+		python3-dev \
 		python3-setuptools \
         python3-pip \
+		python3-venv \
 		libstdc++6 \
 		gcc-multilib\
 		libjpeg-dev\
