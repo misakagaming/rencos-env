@@ -1,6 +1,5 @@
-#FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
+FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 #FROM nvidia/cuda:12.2.0-devel-ubuntu22.04
-FROM pytorch/pytorch:nightly-runtime-cuda9.2-cudnn7
 
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
@@ -154,7 +153,7 @@ RUN /opt/python/venv/base/bin/python -m pip install --upgrade pip
 
 COPY requirements.txt /opt/python/venv/base/
 
-RUN /opt/python/venv/base/bin/python -m pip install -v "torch==0.4.1" -f https://download.pytorch.org/whl/cu92/torch_stable.html
+RUN /opt/python/venv/base/bin/python -m pip install -v "torch==1.7.1" -f https://download.pytorch.org/whl/cu110/torch_stable.html
 
 RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
