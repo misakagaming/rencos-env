@@ -132,9 +132,9 @@ WORKDIR /
 
 
 RUN python -m pip install --upgrade pip \
-    && python -m venv /opt/python/venv/base
+    && python -m venv --system-site-packages /opt/python/venv/base
 	
-RUN ln -sf /opt/python/venv/base/bin/python /usr/bin/python
+#RUN ln -sf /opt/python/venv/base/bin/python /usr/bin/python
 	
 
 
