@@ -146,7 +146,7 @@ RUN /opt/python/venv/base/bin/python -m pip install --upgrade pip
 COPY requirements.txt /opt/python/venv/base/
 
 
-RUN /opt/python/venv/base/bin/python -m pip install -v "torch==0.4.1" -f https://download.pytorch.org/whl/cu80/torch_stable.html
+RUN /opt/python/venv/base/bin/python -m pip install -v "torch==0.4.1" -f https://download.pytorch.org/whl/cu100/torch_stable.html
 
 RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
