@@ -12,6 +12,19 @@ ARG PYLUCENE_VERSION=7.4.0
 RUN nvcc --version
 
 # ADD Python PPA Repository
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+        software-properties-common gpg-agent && \
+    add-apt-repository ppa:deadsnakes/ppa && \
+    apt-get update && \
+    apt-get remove -y software-properties-common && \
+    apt-get purge --auto-remove -y && \
+    apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
+
+RUN which gpg-agent
+
+# Install Python
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
         git \
@@ -20,28 +33,24 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         ninja-build \
         build-essential \
 		checkinstall \
-		software-properties-common \
-    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
-
-
-# Install Python
-RUN add-apt-repository ppa:deadsnakes/ppa
-
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends \
-		python3-distutils \
-        python3-dev \
+        "python$PYTHON_VERSION-dev" \
+		"python$PYTHON_VERSION-distutils" \
+		python3-setuptools \
         python3-pip \
-        python3-venv \
-		python-is-python3 \
+        "python$PYTHON_VERSION-venv" \
+        python-is-python3 \
 		libstdc++6 \
 		gcc-multilib\
-		libc6 \
-		 && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
+		libjpeg-dev\
+		zlib1g-dev\
+		libc6 &&\
+    apt-get remove -y gpg-agent && \
+    apt-get purge --auto-remove -y && \
+    apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
-RUN python3 --version
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install --upgrade Pillow
+RUN python3.6 --version
+RUN python3.6 -m pip install --upgrade pip
+RUN python3.6 -m pip install --upgrade Pillow
 
 #RUN pwd
 
