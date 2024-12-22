@@ -1,7 +1,6 @@
 #FROM ubuntu:focal
-FROM quangbd/dc-python:3.6-cuda9.0-cudnn7-ubuntu16.04
-
-
+FROM nvidia/cuda:9.0-base-ubuntu16.04
+FROM python:3.6-slim
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Python Version x.y
