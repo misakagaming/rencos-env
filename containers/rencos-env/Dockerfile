@@ -51,6 +51,9 @@ RUN python3.6 -m pip install --upgrade Pillow
 
 RUN pwd
 
+RUN mkdir tmp
+RUN export TMPDIR=`pwd`/tmp
+
 #RUN python3.6 -m venv /opt/python3/venv/base
 
 # ======================== START OF ADDITIONAL INSTALLATION ========================
@@ -67,7 +70,7 @@ RUN apt-get install -y --no-install-recommends \
 #RUN ls /usr/bin/ | grep "python"
 #RUN which python$PYTHON_VERSION
 #RUN python3 --version
-#RUN ln -s $(which python$PYTHON_VERSION) /usr/bin/python 
+RUN ln -s $(which python3.6) /usr/bin/python 
 
 
 
@@ -119,6 +122,9 @@ WORKDIR /usr/src
 RUN rm -rf pylucene
 
 RUN python3.6 -c "import lucene; lucene.initVM()"
+
+WORKDIR /app
+COPY . .
 
 WORKDIR /
 
