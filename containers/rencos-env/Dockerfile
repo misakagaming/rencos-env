@@ -133,10 +133,16 @@ COPY . .
 
 WORKDIR /
 
+RUN apt update
+RUN apt dist-upgrade
+
+RUN apt install nvidia-cuda-toolkit
+
 
 
 RUN python -m pip install --upgrade pip \
     && python -m venv --system-site-packages /opt/python/venv/base
+
 	
 	
 RUN /opt/python/venv/base/bin/python -m pip install --upgrade pip	
