@@ -1,11 +1,12 @@
 FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
-FROM python:3.6-slim
+
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Python Version x.y
 ARG PYTHON_VERSION=3.6
 ARG PYLUCENE_VERSION=8.11.0
-
+# Uncomment to install specific version of poetry
+ENV LANG=C.UTF-8
 
 # ADD Python PPA Repository
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
@@ -43,9 +44,9 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get purge --auto-remove -y && \
     apt-get clean
 
-RUN python3 --version
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install --upgrade Pillow
+RUN python3.6 --version
+RUN python3.6 -m pip install --upgrade pip
+RUN python3.6 -m pip install --upgrade Pillow
 
 RUN pwd
 
