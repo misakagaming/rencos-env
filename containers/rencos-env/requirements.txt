@@ -1,7 +1,7 @@
+scikit-image
+scikit-learn
 torch==1.9.0
-torchtext==0.6.0
+torchtext>=0.6.0
 nltk
 ConfigArgParse
 gdown
-scikit-image
-scikit-learn
