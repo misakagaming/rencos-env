@@ -1,10 +1,11 @@
 #FROM ubuntu:focal
 FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
+
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Python Version x.y
 ARG PYTHON_VERSION=3.6
-ARG PYLUCENE_VERSION=7.7.1
+ARG PYLUCENE_VERSION=8.11.0
 # Uncomment to install specific version of poetry
 ENV LANG=C.UTF-8
 
@@ -48,6 +49,12 @@ RUN python3.6 --version
 RUN python3.6 -m pip install --upgrade pip
 RUN python3.6 -m pip install --upgrade Pillow
 
+RUN pwd
+
+RUN export TMPDIR=`pwd`/tmp
+
+#RUN python3.6 -m venv /opt/python3/venv/base
+
 # ======================== START OF ADDITIONAL INSTALLATION ========================
 
 # Install Java
@@ -59,10 +66,10 @@ RUN apt-get install -y --no-install-recommends \
     git \
     default-jdk 
     
-RUN ls /usr/bin/ | grep "python"
+#RUN ls /usr/bin/ | grep "python"
 RUN which python$PYTHON_VERSION
-RUN python3 --version
-#RUN ln -s $(which python$PYTHON_VERSION) /usr/bin/python 
+#RUN python3 --version
+RUN ln -s $(which python3.6) /usr/bin/python 
 
 
 
@@ -113,13 +120,20 @@ RUN apt-get remove -y gpg-agent ant jcc build-essential && \
 WORKDIR /usr/src
 RUN rm -rf pylucene
 
-RUN python3.6 -m venv /opt/python3/venv/base
-RUN python3.6 --version
+RUN python3.6 -c "import lucene; lucene.initVM()"
+
+WORKDIR /app
+COPY . .
+
+WORKDIR /
 
 
-COPY requirements.txt /opt/python3/venv/base/
-RUN /opt/python3/venv/base/bin/python3.6 -m pip install --no-cache-dir torch==0.4.1 torchvision==0.2.1 -f https://download.pytorch.org/whl/cu100/torch_stable.html
-RUN /opt/python3/venv/base/bin/python3.6 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
+#COPY requirements.txt /opt/python3/venv/base/
+
+COPY requirements.txt .
+
+#RUN /opt/python3/venv/base/bin/python3 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
+RUN python3.6 -m pip install --no-cache-dir -r requirements.txt
 
 COPY rencos-master .
 

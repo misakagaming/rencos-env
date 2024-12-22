@@ -1,16 +1,14 @@
-#FROM ubuntu:focal
-FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
-
-ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+FROM ubuntu:focal
 
 # Python Version x.y
-ARG PYTHON_VERSION=3.6
+ARG PYTHON_VERSION=3.9
 ARG PYLUCENE_VERSION=8.11.0
+
 # Uncomment to install specific version of poetry
 ENV LANG=C.UTF-8
 
 # ADD Python PPA Repository
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
+RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
         software-properties-common gpg-agent && \
@@ -23,37 +21,13 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
 RUN which gpg-agent
 
 # Install Python
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends \
-        git \
-        wget \
-        cmake \
-        ninja-build \
-        build-essential \
+RUN apt-get install -y --no-install-recommends \
         "python$PYTHON_VERSION-dev" \
-		"python$PYTHON_VERSION-distutils" \
-		python3-setuptools \
-        python3-pip \
-        "python$PYTHON_VERSION-venv" \
-        python-is-python3 \
-		libstdc++6 \
-		gcc-multilib\
-		libjpeg-dev\
-		zlib1g-dev\
-		libc6 &&\
+        python3-setuptools \
+        python3-pip && \
     apt-get remove -y gpg-agent && \
     apt-get purge --auto-remove -y && \
     apt-get clean
-
-RUN python3.6 --version
-RUN python3.6 -m pip install --upgrade pip
-RUN python3.6 -m pip install --upgrade Pillow
-
-RUN pwd
-
-RUN export TMPDIR=`pwd`/tmp
-
-#RUN python3.6 -m venv /opt/python3/venv/base
 
 # ======================== START OF ADDITIONAL INSTALLATION ========================
 
@@ -66,12 +40,10 @@ RUN apt-get install -y --no-install-recommends \
     git \
     default-jdk 
     
-#RUN ls /usr/bin/ | grep "python"
-RUN which python$PYTHON_VERSION
-#RUN python3 --version
-#RUN ln -s $(which python3.6) /usr/bin/python 
+RUN ls /usr/bin/ | grep "python"
+RUN ln -s $(which python$PYTHON_VERSION) /usr/bin/python
 
-
+RUN which python$PYTHON_VERSION && which python && python --version
 
 WORKDIR /usr/lib/jvm/default-java/jre/lib
 RUN ln -s ../../lib amd64
@@ -94,9 +66,9 @@ RUN curl https://dlcdn.apache.org/lucene/pylucene/pylucene-$PYLUCENE_VERSION-src
 ENV PREFIX_PYTHON=/usr \
     JCC_JDK=/usr/lib/jvm/default-java \
     ANT=ant \
-    JCC='python3.6 -m jcc' \
+    JCC='python -m jcc' \
     NUM_FILES=10 \
-    PYTHON=python3.6 \
+    PYTHON=python \
     NO_SHARED=1
 
 RUN cd "pylucene-$PYLUCENE_VERSION/lucene-java-$PYLUCENE_VERSION/lucene" && \
@@ -106,11 +78,11 @@ RUN cd "pylucene-$PYLUCENE_VERSION/lucene-java-$PYLUCENE_VERSION/lucene" && \
 
 RUN cd "pylucene-$PYLUCENE_VERSION/jcc" && \
     ls -la && \
-    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3.6 setup.py build && \
-    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3.6 setup.py install && \
+    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python setup.py build && \
+    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python setup.py install && \
     cd .. && \
-    make JCC="python3.6 -m jcc" ANT=ant PYTHON=python3.6 NUM_FILES=8&& \
-    make install JCC="python3.6 -m jcc" ANT=ant PYTHON=python3.6 NUM_FILES=8 && \
+    make JCC="python -m jcc" ANT=ant PYTHON=python NUM_FILES=8&& \
+    make install JCC="python -m jcc" ANT=ant PYTHON=python NUM_FILES=8 && \
     cd ../../
 
 RUN apt-get remove -y gpg-agent ant jcc build-essential && \
@@ -120,20 +92,45 @@ RUN apt-get remove -y gpg-agent ant jcc build-essential && \
 WORKDIR /usr/src
 RUN rm -rf pylucene
 
-RUN python3.6 -c "import lucene; lucene.initVM()"
+RUN python -c "import lucene; lucene.initVM()"
+
+# ======================== END OF ADDITIONAL INSTALLATION ========================
 
 WORKDIR /app
 COPY . .
 
 WORKDIR /
 
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends \
+        git \
+        wget \
+        cmake \
+        ninja-build \
+        build-essential \
+		checkinstall \
+		software-properties-common \
+    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
-#COPY requirements.txt /opt/python3/venv/base/
 
-COPY requirements.txt .
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends \
+		python3-distutils \
+        python3-venv \
+		python-is-python3 \
+		libstdc++6 \
+		gcc-multilib\
+		libc6 \
+		 && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
+	
 
-#RUN /opt/python3/venv/base/bin/python3 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
-RUN python3.6 -m pip install --no-cache-dir -r requirements.txt
+RUN python -m pip install --upgrade pip \
+    && python -m venv /opt/python/venv/base
+	
+
+
+COPY requirements.txt /opt/python/venv/base/
+RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
 
 COPY rencos-master .
 
@@ -143,3 +140,5 @@ RUN chmod +x /entrypoint.sh
 
 # Set entrypoint to bash
 ENTRYPOINT ["/entrypoint.sh"]
+
+
