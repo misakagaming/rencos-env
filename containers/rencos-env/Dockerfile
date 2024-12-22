@@ -99,10 +99,11 @@ ENV PREFIX_PYTHON=/usr \
     PYTHON=python \
     NO_SHARED=1
 	
-WORKDIR /root/.ant/lib
 
 
-RUN curl https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.4.0/ivy-2.4.0.jar
+RUN cd "/root/.ant/lib" && \
+	curl https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.4.0/ivy-2.4.0.jar && \
+	cd "/usr/src/pylucene"
 
 WORKDIR /usr/src/pylucene
 
