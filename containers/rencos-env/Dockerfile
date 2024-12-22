@@ -3,11 +3,12 @@ FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-ENV CUDA_VISIBLE_DEVICES=1
 
 # Python Version x.y
 ARG PYTHON_VERSION=3.6
 ARG PYLUCENE_VERSION=7.4.0
+# Uncomment to install specific version of poetry
+ENV LANG=C.UTF-8
 
 RUN nvcc --version
 
@@ -51,17 +52,9 @@ RUN python3.6 --version
 RUN python3.6 -m pip install --upgrade pip
 RUN python3.6 -m pip install --upgrade Pillow
 
-#RUN pwd
+RUN pwd
 
-#RUN export TMPDIR=`pwd`/tmp
-
-ENV CONDA_DIR /opt/conda
-RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
-    /bin/bash ~/miniconda.sh -b -p /opt/conda
-
-# Put conda in path so we can use conda activate
-ENV PATH=$CONDA_DIR/bin:$PATH
-
+RUN export TMPDIR=`pwd`/tmp
 
 
 # ======================== START OF ADDITIONAL INSTALLATION ========================
@@ -72,8 +65,7 @@ RUN apt-get install -y --no-install-recommends \
     ant \
     curl \
     git \
-    default-jdk \
-	jcc
+    default-jdk
     
 RUN ls /usr/bin/ | grep "python"
 RUN ln -sf $(which python$PYTHON_VERSION) /usr/bin/python
@@ -156,7 +148,12 @@ RUN python -m pip install --upgrade pip \
     && python -m venv --system-site-packages /opt/python/venv/base
 
 
-	
+ENV CONDA_DIR /opt/conda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda
+
+# Put conda in path so we can use conda activate
+ENV PATH=$CONDA_DIR/bin:$PATH
 	
 RUN /opt/python/venv/base/bin/python -m pip install --upgrade pip	
 
@@ -178,5 +175,3 @@ RUN chmod +x /entrypoint.sh
 
 # Set entrypoint to bash
 ENTRYPOINT ["/entrypoint.sh"]
-
-
