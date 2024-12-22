@@ -150,7 +150,9 @@ RUN python -m pip install --upgrade pip \
 RUN /opt/python/venv/base/bin/python -m pip install --upgrade pip
 	
 	
-RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -v torch==0.4.1 -f https://download.pytorch.org/whl/cu100/torch_stable.html
+COPY torch-0.4.1-cp37-cp37m-macosx_10_7_x86_64.whl .
+
+pip torch-0.4.1-cp37-cp37m-macosx_10_7_x86_64.whl
 
 COPY requirements.txt /opt/python/venv/base/
 RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
