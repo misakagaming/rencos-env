@@ -12,6 +12,7 @@ ARG PYLUCENE_VERSION=7.4.0
 ENV LANG=C.UTF-8
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+	&& apt dist-upgrade \
     && apt-get -y install --no-install-recommends \
         git \
         wget \
@@ -20,6 +21,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         build-essential \
 		checkinstall \
 		software-properties-common \
+		nvidia-cuda-toolkit \
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
 
@@ -132,11 +134,6 @@ WORKDIR /app
 COPY . .
 
 WORKDIR /
-
-RUN apt update
-RUN apt dist-upgrade
-
-RUN apt install nvidia-cuda-toolkit
 
 
 
