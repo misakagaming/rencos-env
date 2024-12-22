@@ -65,7 +65,7 @@ RUN apt-get install -y --no-install-recommends \
     default-jdk 
     
 RUN ls /usr/bin/ | grep "python"
-RUN ln -s $(which python$PYTHON_VERSION) /usr/bin/python
+RUN ln -sf $(which python$PYTHON_VERSION) /usr/bin/python
 
 RUN which python$PYTHON_VERSION && which python && python --version
 
