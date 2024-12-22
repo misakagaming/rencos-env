@@ -107,7 +107,7 @@ RUN mkdir -p "/root/.ant/lib"
 
 WORKDIR /root/.ant/lib
 
-RUN	curl https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
+COPY ivy-2.4.0.jar .
 
 WORKDIR /usr/src/pylucene
 
