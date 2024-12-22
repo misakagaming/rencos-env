@@ -6,10 +6,10 @@ ARG PYTHON_VERSION=3.9
 ARG PYLUCENE_VERSION=8.11.0
 
 # Uncomment to install specific version of poetry
-ENV LANG=C.UTF-8
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # ADD Python PPA Repository
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
         software-properties-common gpg-agent && \
