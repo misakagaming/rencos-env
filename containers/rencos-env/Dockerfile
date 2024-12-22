@@ -98,6 +98,13 @@ ENV PREFIX_PYTHON=/usr \
     NUM_FILES=10 \
     PYTHON=python \
     NO_SHARED=1
+	
+WORKDIR /root/.ant/lib
+
+
+RUN curl https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.4.0/ivy-2.4.0.jar
+
+WORKDIR /usr/src/pylucene
 
 RUN cd "pylucene-$PYLUCENE_VERSION/lucene-java-$PYLUCENE_VERSION/lucene" && \
     ant ivy-bootstrap && \
