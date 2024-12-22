@@ -127,10 +127,12 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN python -m pip install --upgrade pip \
     && python -m venv /opt/python/venv/base
 	
+#RUN ln -s $(which python$PYTHON_VERSION) /usr/bin/python
+	
 
 
 COPY requirements.txt /opt/python/venv/base/
-RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
+RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
 COPY rencos-master .
 
