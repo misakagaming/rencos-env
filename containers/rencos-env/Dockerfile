@@ -21,7 +21,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 		software-properties-common \
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
-RUN add-apt-repository -y ppa:jblgf0/python
 
 # Install Python
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
