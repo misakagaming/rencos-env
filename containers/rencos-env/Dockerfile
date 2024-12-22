@@ -101,7 +101,8 @@ ENV PREFIX_PYTHON=/usr \
 	
 
 
-RUN cd "/root/.ant/lib" && \
+RUN mkdir "/root/.ant/lib" && \
+	cd "/root/.ant/lib" && \
 	curl https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.4.0/ivy-2.4.0.jar && \
 	cd "/usr/src/pylucene"
 
