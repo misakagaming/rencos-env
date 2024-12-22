@@ -56,7 +56,7 @@ RUN apt-get install -y --no-install-recommends \
     ant \
     curl \
     git \
-    default-jdk 
+    default-jdk
     
 RUN ls /usr/bin/ | grep "python"
 RUN ln -sf $(which python$PYTHON_VERSION) /usr/bin/python
@@ -120,9 +120,6 @@ RUN cd "pylucene-$PYLUCENE_VERSION/jcc" && \
     make install JCC="python -m jcc" ANT=ant PYTHON=python NUM_FILES=8 && \
     cd ../../
 
-RUN apt-get remove -y gpg-agent ant jcc build-essential && \
-    apt-get purge --auto-remove -y && \
-    apt-get clean
 
 WORKDIR /usr/src
 RUN rm -rf pylucene
@@ -149,7 +146,7 @@ RUN /opt/python/venv/base/bin/python -m pip install --upgrade pip
 COPY requirements.txt /opt/python/venv/base/
 
 
-RUN /opt/python/venv/base/bin/python -m pip install -v "torch==0.4.1" -f https://download.pytorch.org/whl/torch_stable.html
+RUN /opt/python/venv/base/bin/python -m pip install -v "torch==0.4.1" -f https://download.pytorch.org/whl/cu80/torch_stable.html
 
 RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
