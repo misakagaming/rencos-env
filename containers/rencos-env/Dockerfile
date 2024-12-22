@@ -1,5 +1,6 @@
 #FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 FROM nvidia/cuda:11.0.3-devel-ubuntu16.04
+python:3.6.15
 
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
@@ -30,12 +31,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         cmake \
         ninja-build \
         build-essential \
-        "python$PYTHON_VERSION-dev" \
-		"python$PYTHON_VERSION-distutils" \
 		python3-setuptools \
         python3-pip \
-        "python$PYTHON_VERSION-venv" \
-        python-is-python3 \
 		libstdc++6 \
 		gcc-multilib\
 		libjpeg-dev\
