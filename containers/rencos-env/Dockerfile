@@ -161,7 +161,7 @@ RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/pytho
 
 RUN /opt/python/venv/base/bin/python -c "import lucene; lucene.initVM()"
 
-RUN /opt/python/venv/base/bin/python -c "import torch; torch.cuda.is_available()"
+RUN /opt/python/venv/base/bin/python -c "import torch; print(torch.cuda.is_available())"
 
 COPY rencos-master .
 
