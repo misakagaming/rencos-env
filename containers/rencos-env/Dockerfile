@@ -9,7 +9,7 @@ ARG PYLUCENE_VERSION=8.11.0
 ENV LANG=C.UTF-8
 
 # ADD Python PPA Repository
-RUN apt-get update && \
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
         software-properties-common gpg-agent && \
