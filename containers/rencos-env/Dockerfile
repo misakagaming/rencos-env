@@ -10,6 +10,11 @@ ARG PYLUCENE_VERSION=7.4.0
 
 RUN nvcc --version
 
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
+RUN dpkg -i cuda-keyring_1.0-1_all.deb
+RUN apt-get update
+RUN apt-get -y install cuda
+
 # ADD Python PPA Repository
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
     apt-get upgrade -y && \
@@ -157,7 +162,7 @@ RUN /opt/python/venv/base/bin/python -m pip install --upgrade pip
 
 COPY requirements.txt /opt/python/venv/base/
 
-RUN /opt/python/venv/base/bin/python -m pip install -v "torch==1.9.0+cu111" "torchvision==0.10.0+cu111" "torchaudio==0.9.0" -f https://download.pytorch.org/whl/torch_stable.html
+RUN /opt/python/venv/base/bin/python -m pip install -v "torch==1.7.0+cu110" "torchvision==0.8.0+cu110" "torchaudio==0.7.0" -f https://download.pytorch.org/whl/torch_stable.html
 
 RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
