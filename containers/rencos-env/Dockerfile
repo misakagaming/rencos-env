@@ -1,14 +1,8 @@
 FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 #FROM nvidia/cuda:12.2.0-devel-ubuntu22.04
 
-
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-# Python Version x.y
-ARG PYTHON_VERSION=3
-ARG PYLUCENE_VERSION=7.4.0
-
-RUN nvcc --version
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
@@ -34,14 +28,15 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 		gcc-multilib\
 		libc6 \
 		 && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
-
-
-RUN python3 --version
-#RUN python3.6 -m pip install --upgrade Pillow
+	
 
 RUN python3 -m pip install --upgrade pip \
-    && python3 -m venv --system-site-packages /opt/python3/venv/base
+    && python3 -m venv /opt/python3/venv/base
+	
 
+
+COPY requirements.txt /opt/python3/venv/base/
+#RUN python3.6 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
 
 ENV CONDA_DIR /opt/conda
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
@@ -49,17 +44,10 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 
 # Put conda in path so we can use conda activate
 ENV PATH=$CONDA_DIR/bin:$PATH
-	
-RUN /opt/python3/venv/base/bin/python3 -m pip install --upgrade pip	
 
-COPY requirements.txt /opt/python3/venv/base/
-
-RUN /opt/python3/venv/base/bin/python3 -m pip install -v "torch==1.9.0+cu111" "torchvision==0.10.0+cu111" "torchaudio==0.9.0" -f https://download.pytorch.org/whl/torch_stable.html
-
-RUN /opt/python3/venv/base/bin/python3 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
-
-
-RUN /opt/python3/venv/base/bin/python3 -c "import torch; print(torch.cuda.is_available())"
+#COPY environment.yml .
+#RUN conda env update -f environment.yml &&\
+#    conda clean -tipy
 
 
 
