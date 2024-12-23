@@ -7,8 +7,6 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 # Python Version x.y
 ARG PYTHON_VERSION=3.6
 ARG PYLUCENE_VERSION=7.4.0
-# Uncomment to install specific version of poetry
-ENV LANG=C.UTF-8
 
 RUN nvcc --version
 
@@ -19,8 +17,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
         software-properties-common gpg-agent && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt-get update && \
-    apt-get remove -y software-properties-common && \
-    apt-get purge --auto-remove -y && \
+    apt-get auto-remove -y && \
     apt-get clean
 
 RUN which gpg-agent
@@ -33,19 +30,19 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         cmake \
         ninja-build \
         build-essential \
-        "python$PYTHON_VERSION-dev" \
-		"python$PYTHON_VERSION-distutils" \
-		python3-setuptools \
+		checkinstall \
+		python3-distutils \
+        python3-dev \
         python3-pip \
-        "python$PYTHON_VERSION-venv" \
-        python-is-python3 \
+        python3-venv \
+		python-is-python3 \
 		libstdc++6 \
 		gcc-multilib\
 		libjpeg-dev\
 		zlib1g-dev\
 		libc6 &&\
     apt-get remove -y gpg-agent && \
-    apt-get purge --auto-remove -y && \
+    apt-get auto-remove -y && \
     apt-get clean
 
 RUN python3.6 --version
