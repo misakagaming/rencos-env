@@ -10,10 +10,6 @@ ARG PYLUCENE_VERSION=7.4.0
 
 RUN nvcc --version
 
-RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
-RUN dpkg -i cuda-keyring_1.0-1_all.deb
-RUN apt-get update
-RUN apt-get -y install cuda
 
 # ADD Python PPA Repository
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
@@ -32,6 +28,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
         git \
         wget \
+		dpkg \
         cmake \
         ninja-build \
         build-essential \
@@ -50,6 +47,11 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get remove -y gpg-agent && \
     apt-get auto-remove -y && \
     apt-get clean
+
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
+RUN dpkg -i cuda-keyring_1.0-1_all.deb
+RUN apt-get update
+RUN apt-get -y install cuda
 
 RUN python3.6 --version
 RUN python3.6 -m pip install --upgrade pip
