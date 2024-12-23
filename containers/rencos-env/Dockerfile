@@ -20,12 +20,10 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         build-essential \
 		checkinstall \
 		software-properties-common \
-		gpg-agent \
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 	
 RUN add-apt-repository ppa:deadsnakes/ppa
 
-RUN which gpg-agent
 
 # Install Python
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
@@ -42,7 +40,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 		libjpeg-dev\
 		zlib1g-dev\
 		libc6 &&\
-	apt-get remove -y gpg-agent && \
     apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
 
@@ -58,7 +55,8 @@ RUN export TMPDIR=`pwd`/tmp
 # ======================== START OF ADDITIONAL INSTALLATION ========================
 
 # Install Java
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get update && \
+	apt-get install -y --no-install-recommends \
     build-essential \
     ant \
     curl \
