@@ -30,24 +30,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 		 && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 	
 
-RUN python3 -m pip install --upgrade pip \
-    && python3 -m venv /opt/python3/venv/base
-	
 
-
-COPY requirements.txt /opt/python3/venv/base/
-#RUN python3.6 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
-
-ENV CONDA_DIR /opt/conda
-RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
-    /bin/bash ~/miniconda.sh -b -p /opt/conda
-
-# Put conda in path so we can use conda activate
-ENV PATH=$CONDA_DIR/bin:$PATH
-
-#COPY environment.yml .
-#RUN conda env update -f environment.yml &&\
-#    conda clean -tipy
 
 
 
@@ -63,7 +46,7 @@ RUN apt-get update && \
     default-jdk
     
 #RUN ls /usr/bin/ | grep "python"
-#RUN ln -sf $(which python$PYTHON_VERSION) /usr/bin/python
+RUN ln -sf $(which python3) /usr/bin/python
 
 #RUN python --version
 
@@ -93,9 +76,9 @@ RUN curl https://archive.apache.org/dist/lucene/pylucene/pylucene-$PYLUCENE_VERS
 ENV PREFIX_PYTHON=/usr \
     JCC_JDK=/usr/lib/jvm/default-java \
     ANT=ant \
-    JCC='/opt/python3/venv/base/bin/python3 -m jcc' \
+    JCC='python -m jcc' \
     NUM_FILES=10 \
-    PYTHON=/opt/python3/venv/base/bin/python3 \
+    PYTHON=python \
     NO_SHARED=1
 	
 
@@ -117,17 +100,17 @@ RUN cd "pylucene-$PYLUCENE_VERSION/lucene-java-$PYLUCENE_VERSION/lucene" && \
 
 RUN cd "pylucene-$PYLUCENE_VERSION/jcc" && \
     ls -la && \
-    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java /opt/python3/venv/base/bin/python3 setup.py build && \
-    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java /opt/python3/venv/base/bin/python3 setup.py install && \
+    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python setup.py build && \
+    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python setup.py install && \
     cd .. && \
-    make JCC="/opt/python3/venv/base/bin/python3 -m jcc" ANT=ant PYTHON=/opt/python3/venv/base/bin/python3 NUM_FILES=8&& \
-    make install JCC="/opt/python3/venv/base/bin/python3 -m jcc" ANT=ant PYTHON=/opt/python3/venv/base/bin/python3 NUM_FILES=8 && \
+    make JCC="python -m jcc" ANT=ant PYTHON=python NUM_FILES=8&& \
+    make install JCC="python -m jcc" ANT=ant PYTHON=python NUM_FILES=8 && \
     cd ../../
 
 
 WORKDIR /usr/src
 RUN rm -rf pylucene
-RUN /opt/python3/venv/base/bin/python3 -c "import lucene; lucene.initVM()"
+RUN python -c "import lucene; lucene.initVM()"
 
 # ======================== END OF ADDITIONAL INSTALLATION ========================
 
@@ -137,7 +120,13 @@ COPY . .
 WORKDIR /
 
 
+RUN python -m pip install --upgrade pip \
+    && python -m venv /opt/python/venv/base
+	
 
+
+COPY requirements.txt /opt/python/venv/base/
+#RUN python3.6 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
 
 COPY rencos-master .
 
