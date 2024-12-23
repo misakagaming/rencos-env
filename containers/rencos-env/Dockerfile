@@ -128,7 +128,7 @@ WORKDIR /
 
 
 RUN python3 -m pip install --upgrade pip \
-    && python3 -m venv /opt/python3/venv/base
+    && python3 -m venv --system-site-packages /opt/python3/venv/base
 
 
 ENV CONDA_DIR /opt/conda
