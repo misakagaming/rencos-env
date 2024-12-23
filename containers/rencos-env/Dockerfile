@@ -5,7 +5,7 @@ FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Python Version x.y
-ARG PYTHON_VERSION=3.6
+ARG PYTHON_VERSION=3.8
 ARG PYLUCENE_VERSION=7.4.0
 
 RUN nvcc --version
@@ -48,12 +48,10 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get auto-remove -y && \
     apt-get clean
 
-RUN apt-get update
-RUN apt-get -y install cuda
 
-RUN python3.6 --version
-RUN python3.6 -m pip install --upgrade pip
-RUN python3.6 -m pip install --upgrade Pillow
+RUN python3 --version
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --upgrade Pillow
 
 RUN pwd
 
