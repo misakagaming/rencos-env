@@ -11,6 +11,7 @@ ARG PYLUCENE_VERSION=7.4.0
 RUN nvcc --version
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+	&& apt-get upgrade -y \
     && apt-get -y install --no-install-recommends \
         git \
         wget \
