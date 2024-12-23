@@ -10,43 +10,38 @@ ARG PYLUCENE_VERSION=7.4.0
 
 RUN nvcc --version
 
-
-# ADD Python PPA Repository
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && \
-    apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends \
-        software-properties-common gpg-agent && \
-    add-apt-repository ppa:deadsnakes/ppa && \
-    apt-get update && \
-    apt-get auto-remove -y && \
-    apt-get clean
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends \
+        git \
+        wget \
+        cmake \
+        ninja-build \
+        build-essential \
+		checkinstall \
+		software-properties-common \
+		gpg-agent \
+    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
+	
+RUN add-apt-repository ppa:deadsnakes/ppa
 
 RUN which gpg-agent
 
 # Install Python
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
-        git \
-        wget \
 		dpkg \
-        cmake \
-        ninja-build \
-        build-essential \
-		checkinstall \
-        "python$PYTHON_VERSION-dev" \
-		"python$PYTHON_VERSION-distutils" \
+        python3-dev \
+		python3-distutils \
 		python3-setuptools \
         python3-pip \
-        "python$PYTHON_VERSION-venv" \
+        python3-venv \
 		python-is-python3 \
 		libstdc++6 \
 		gcc-multilib\
 		libjpeg-dev\
 		zlib1g-dev\
 		libc6 &&\
-    apt-get remove -y gpg-agent && \
-    apt-get auto-remove -y && \
-    apt-get clean
+    apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
 
 RUN python3 --version
@@ -69,7 +64,7 @@ RUN apt-get install -y --no-install-recommends \
     default-jdk
     
 RUN ls /usr/bin/ | grep "python"
-RUN ln -sf $(which python$PYTHON_VERSION) /usr/bin/python
+RUN ln -sf $(which python3) /usr/bin/python
 
 RUN python --version
 
@@ -134,7 +129,6 @@ RUN cd "pylucene-$PYLUCENE_VERSION/jcc" && \
 WORKDIR /usr/src
 RUN rm -rf pylucene
 
-RUN python -c "import lucene; lucene.initVM()"
 
 # ======================== END OF ADDITIONAL INSTALLATION ========================
 
@@ -164,7 +158,6 @@ RUN /opt/python/venv/base/bin/python -m pip install -v "torch==1.7.1+cu110" "tor
 
 RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
-RUN /opt/python/venv/base/bin/python -c "import lucene; lucene.initVM()"
 
 RUN /opt/python/venv/base/bin/python -c "import torch; print(torch.cuda.is_available())"
 
