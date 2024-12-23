@@ -48,8 +48,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get auto-remove -y && \
     apt-get clean
 
-RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
-RUN dpkg -i cuda-keyring_1.0-1_all.deb
 RUN apt-get update
 RUN apt-get -y install cuda
 
