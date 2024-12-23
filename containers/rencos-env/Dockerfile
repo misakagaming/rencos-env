@@ -154,12 +154,12 @@ RUN /opt/python/venv/base/bin/python -m pip install --upgrade pip
 
 COPY requirements.txt /opt/python/venv/base/
 
-#RUN /opt/python/venv/base/bin/python -m pip install -v "torch==1.7.1+cu110" "torchvision==0.8.2+cu110" "torchaudio" -f https://download.pytorch.org/whl/torch_stable.html
+RUN /opt/python/venv/base/bin/python -m pip install -v "torch==0.4.1+cu92" "torchvision" "torchaudio" -f https://download.pytorch.org/whl/torch_stable.html
 
-#RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
+RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
 
-#RUN /opt/python/venv/base/bin/python -c "import torch; print(torch.cuda.is_available())"
+RUN /opt/python/venv/base/bin/python -c "import torch; print(torch.cuda.is_available())"
 
 COPY rencos-master .
 
