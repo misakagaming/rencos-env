@@ -128,7 +128,7 @@ WORKDIR /
 
 
 RUN python3 -m pip install --upgrade pip \
-    && python3 -m venv --system-site-packages /opt/python3/venv/base
+    && python3 -m venv /opt/python3/venv/base
 
 
 ENV CONDA_DIR /opt/conda
@@ -148,7 +148,7 @@ RUN /opt/python3/venv/base/bin/python3 -m pip install --no-cache-dir -r /opt/pyt
 
 
 RUN /opt/python3/venv/base/bin/python3 -c "import torch; print(torch.cuda.is_available())"
-
+RUN /opt/python3/venv/base/bin/python3 -c "import lucene; lucene.initVM()"
 COPY rencos-master .
 
 
