@@ -5,7 +5,7 @@ FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Python Version x.y
-ARG PYTHON_VERSION=3
+ARG PYTHON_VERSION=3.6
 ARG PYLUCENE_VERSION=7.4.0
 
 RUN nvcc --version
@@ -25,11 +25,12 @@ RUN add-apt-repository ppa:deadsnakes/ppa
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
-		python3-distutils \
-        python3-dev \
+        "python$PYTHON_VERSION-dev" \
+		"python$PYTHON_VERSION-distutils" \
+		python3-setuptools \
         python3-pip \
-        python3-venv \
-		python-is-python3 \
+        "python$PYTHON_VERSION-venv" \
+        python-is-python3 \
 		libstdc++6 \
 		gcc-multilib\
 		libc6 \
@@ -52,11 +53,11 @@ RUN apt-get update && \
     default-jdk
     
 #RUN ls /usr/bin/ | grep "python"
-#RUN ln -sf $(which python$PYTHON_VERSION) /usr/bin/python
+RUN ln -sf $(which python$PYTHON_VERSION) /usr/bin/python
 
 #RUN python --version
 
-RUN python3 -m pip install --upgrade pip
+RUN python -m pip install --upgrade pip
 
 #RUN which python$PYTHON_VERSION && which python && python --version
 
@@ -82,9 +83,9 @@ RUN curl https://archive.apache.org/dist/lucene/pylucene/pylucene-$PYLUCENE_VERS
 ENV PREFIX_PYTHON=/usr \
     JCC_JDK=/usr/lib/jvm/default-java \
     ANT=ant \
-    JCC='python3 -m jcc' \
+    JCC='python -m jcc' \
     NUM_FILES=10 \
-    PYTHON=python3 \
+    PYTHON=python \
     NO_SHARED=1
 	
 
@@ -106,11 +107,11 @@ RUN cd "pylucene-$PYLUCENE_VERSION/lucene-java-$PYLUCENE_VERSION/lucene" && \
 
 RUN cd "pylucene-$PYLUCENE_VERSION/jcc" && \
     ls -la && \
-    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3 setup.py build && \
-    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3 setup.py install && \
+    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python setup.py build && \
+    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python setup.py install && \
     cd .. && \
-    make JCC="python3 -m jcc" ANT=ant PYTHON=python3 NUM_FILES=8&& \
-    make install JCC="python3 -m jcc" ANT=ant PYTHON=python3 NUM_FILES=8 && \
+    make JCC="python -m jcc" ANT=ant PYTHON=python NUM_FILES=8&& \
+    make install JCC="python -m jcc" ANT=ant PYTHON=python NUM_FILES=8 && \
     cd ../../
 
 
@@ -127,8 +128,8 @@ WORKDIR /
 
 
 
-RUN python3 -m pip install --upgrade pip \
-    && python3 -m venv --system-site-packages /opt/python3/venv/base
+RUN python -m pip install --upgrade pip \
+    && python -m venv --system-site-packages /opt/python/venv/base
 
 
 ENV CONDA_DIR /opt/conda
@@ -138,7 +139,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 # Put conda in path so we can use conda activate
 ENV PATH=$CONDA_DIR/bin:$PATH
 	
-RUN /opt/python3/venv/base/bin/python3 -m pip install --upgrade pip	
+RUN /opt/python/venv/base/bin/python -m pip install --upgrade pip	
 
 COPY requirements.txt .
 
