@@ -5,7 +5,7 @@ FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Python Version x.y
-ARG PYTHON_VERSION=3.8
+ARG PYTHON_VERSION=3.6
 ARG PYLUCENE_VERSION=7.4.0
 
 RUN nvcc --version
@@ -29,12 +29,12 @@ RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
 		dpkg \
-        python3-dev \
-		python3-distutils \
+        "python$PYTHON_VERSION-dev" \
+		"python$PYTHON_VERSION-distutils" \
 		python3-setuptools \
         python3-pip \
-        python3-venv \
-		python-is-python3 \
+        "python$PYTHON_VERSION-venv" \
+        python-is-python3 \
 		libstdc++6 \
 		gcc-multilib\
 		libjpeg-dev\
@@ -43,9 +43,9 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
 
-RUN python3 --version
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install --upgrade Pillow
+RUN python3.6 --version
+RUN python3.6 -m pip install --upgrade pip
+RUN python3.6 -m pip install --upgrade Pillow
 
 RUN pwd
 
@@ -64,7 +64,7 @@ RUN apt-get update && \
     default-jdk
     
 RUN ls /usr/bin/ | grep "python"
-RUN ln -sf $(which python3) /usr/bin/python
+RUN ln -sf $(which python$PYTHON_VERSION) /usr/bin/python
 
 RUN python --version
 
@@ -154,12 +154,12 @@ RUN /opt/python/venv/base/bin/python -m pip install --upgrade pip
 
 COPY requirements.txt /opt/python/venv/base/
 
-RUN /opt/python/venv/base/bin/python -m pip install -v "torch==1.7.1+cu110" "torchvision==0.8.2+cu110" "torchaudio" -f https://download.pytorch.org/whl/torch_stable.html
+#RUN /opt/python/venv/base/bin/python -m pip install -v "torch==1.7.1+cu110" "torchvision==0.8.2+cu110" "torchaudio" -f https://download.pytorch.org/whl/torch_stable.html
 
-RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
+#RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
 
-RUN /opt/python/venv/base/bin/python -c "import torch; print(torch.cuda.is_available())"
+#RUN /opt/python/venv/base/bin/python -c "import torch; print(torch.cuda.is_available())"
 
 COPY rencos-master .
 
