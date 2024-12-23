@@ -5,13 +5,12 @@ FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Python Version x.y
-ARG PYTHON_VERSION=3.6
+ARG PYTHON_VERSION=3
 ARG PYLUCENE_VERSION=7.4.0
 
 RUN nvcc --version
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-	&& apt-get upgrade -y \
     && apt-get -y install --no-install-recommends \
         git \
         wget \
@@ -24,32 +23,21 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 	
 RUN add-apt-repository ppa:deadsnakes/ppa
 
-
-# Install Python
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
-		dpkg \
-        "python$PYTHON_VERSION-dev" \
-		"python$PYTHON_VERSION-distutils" \
-		python3-setuptools \
+		python3-distutils \
+        python3-dev \
         python3-pip \
-        "python$PYTHON_VERSION-venv" \
-        python-is-python3 \
+        python3-venv \
+		python-is-python3 \
 		libstdc++6 \
 		gcc-multilib\
-		libjpeg-dev\
-		zlib1g-dev\
-		libc6 &&\
-    apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
+		libc6 \
+		 && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
 
-RUN python3.6 --version
-RUN python3.6 -m pip install --upgrade pip
-RUN python3.6 -m pip install --upgrade Pillow
-
-RUN pwd
-
-RUN export TMPDIR=`pwd`/tmp
+RUN python3 --version
+#RUN python3.6 -m pip install --upgrade Pillow
 
 
 # ======================== START OF ADDITIONAL INSTALLATION ========================
@@ -140,8 +128,8 @@ WORKDIR /
 
 
 RUN python -m pip install --upgrade pip \
-    && python -m venv --system-site-packages /opt/python/venv/base
-
+    && python -m venv /opt/python/venv/base
+#--system-site-packages
 
 ENV CONDA_DIR /opt/conda
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
@@ -154,12 +142,12 @@ RUN /opt/python/venv/base/bin/python -m pip install --upgrade pip
 
 COPY requirements.txt /opt/python/venv/base/
 
-RUN /opt/python/venv/base/bin/python -m pip install -v "torch==0.4.1" "torchvision" "torchaudio" -f https://download.pytorch.org/whl/cu92/torch_stable.html
+#RUN /opt/python/venv/base/bin/python -m pip install -v "torch==1.9.0+cu111" "torchvision==0.10.0+cu111" "torchaudio==0.9.0" -f https://download.pytorch.org/whl/torch_stable.html
 
-RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
+#RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
 
-RUN /opt/python/venv/base/bin/python -c "import torch; print(torch.cuda.is_available())"
+#RUN /opt/python/venv/base/bin/python -c "import torch; print(torch.cuda.is_available())"
 
 COPY rencos-master .
 
