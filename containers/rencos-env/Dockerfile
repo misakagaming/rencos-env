@@ -39,6 +39,29 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN python3 --version
 #RUN python3.6 -m pip install --upgrade Pillow
 
+RUN python3 -m pip install --upgrade pip \
+    && python3 -m venv --system-site-packages /opt/python3/venv/base
+
+
+ENV CONDA_DIR /opt/conda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda
+
+# Put conda in path so we can use conda activate
+ENV PATH=$CONDA_DIR/bin:$PATH
+	
+RUN /opt/python3/venv/base/bin/python3 -m pip install --upgrade pip	
+
+COPY requirements.txt /opt/python3/venv/base/
+
+RUN /opt/python3/venv/base/bin/python3 -m pip install -v "torch==1.9.0+cu111" "torchvision==0.10.0+cu111" "torchaudio==0.9.0" -f https://download.pytorch.org/whl/torch_stable.html
+
+RUN /opt/python3/venv/base/bin/python3 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
+
+
+RUN /opt/python3/venv/base/bin/python3 -c "import torch; print(torch.cuda.is_available())"
+
+
 
 # ======================== START OF ADDITIONAL INSTALLATION ========================
 
@@ -56,7 +79,7 @@ RUN apt-get update && \
 
 #RUN python --version
 
-RUN python3 -m pip install --upgrade pip
+#RUN python3 -m pip install --upgrade pip
 
 #RUN which python$PYTHON_VERSION && which python && python --version
 
@@ -82,9 +105,9 @@ RUN curl https://archive.apache.org/dist/lucene/pylucene/pylucene-$PYLUCENE_VERS
 ENV PREFIX_PYTHON=/usr \
     JCC_JDK=/usr/lib/jvm/default-java \
     ANT=ant \
-    JCC='python3 -m jcc' \
+    JCC='/opt/python3/venv/base/bin/python3 -m jcc' \
     NUM_FILES=10 \
-    PYTHON=python3 \
+    PYTHON=/opt/python3/venv/base/bin/python3 \
     NO_SHARED=1
 	
 
@@ -106,17 +129,17 @@ RUN cd "pylucene-$PYLUCENE_VERSION/lucene-java-$PYLUCENE_VERSION/lucene" && \
 
 RUN cd "pylucene-$PYLUCENE_VERSION/jcc" && \
     ls -la && \
-    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3 setup.py build && \
-    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3 setup.py install && \
+    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java /opt/python3/venv/base/bin/python3 setup.py build && \
+    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java /opt/python3/venv/base/bin/python3 setup.py install && \
     cd .. && \
-    make JCC="python3 -m jcc" ANT=ant PYTHON=python3 NUM_FILES=8&& \
-    make install JCC="python3 -m jcc" ANT=ant PYTHON=python3 NUM_FILES=8 && \
+    make JCC="/opt/python3/venv/base/bin/python3 -m jcc" ANT=ant PYTHON=/opt/python3/venv/base/bin/python3 NUM_FILES=8&& \
+    make install JCC="/opt/python3/venv/base/bin/python3 -m jcc" ANT=ant PYTHON=/opt/python3/venv/base/bin/python3 NUM_FILES=8 && \
     cd ../../
 
 
 WORKDIR /usr/src
 RUN rm -rf pylucene
-
+RUN /opt/python3/venv/base/bin/python3 -c "import lucene; lucene.initVM()"
 
 # ======================== END OF ADDITIONAL INSTALLATION ========================
 
@@ -127,28 +150,7 @@ WORKDIR /
 
 
 
-RUN python3 -m pip install --upgrade pip \
-    && python3 -m venv --system-site-packages /opt/python3/venv/base
 
-
-ENV CONDA_DIR /opt/conda
-RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
-    /bin/bash ~/miniconda.sh -b -p /opt/conda
-
-# Put conda in path so we can use conda activate
-ENV PATH=$CONDA_DIR/bin:$PATH
-	
-RUN /opt/python3/venv/base/bin/python3 -m pip install --upgrade pip	
-
-COPY requirements.txt /opt/python3/venv/base/
-
-RUN /opt/python3/venv/base/bin/python3 -m pip install -v "torch==1.9.0+cu111" "torchvision==0.10.0+cu111" "torchaudio==0.9.0" -f https://download.pytorch.org/whl/torch_stable.html
-
-RUN /opt/python3/venv/base/bin/python3 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
-
-
-RUN /opt/python3/venv/base/bin/python3 -c "import torch; print(torch.cuda.is_available())"
-RUN /opt/python3/venv/base/bin/python3 -c "import lucene; lucene.initVM()"
 COPY rencos-master .
 
 

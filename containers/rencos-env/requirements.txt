@@ -1,14 +1,5 @@
-flair==0.9
-torch==1.9.0
-torchtext==0.6.0
-transformers==4.25.1
-six==1.14.0
-rouge==1.0.0
-javalang==0.13.0
-pandas
-pyarrow
-nltk
-git+https://github.com/casics/spiral.git
+torchtext==0.3.1
+nltk==3.2.4
 ConfigArgParse==0.14.0
 gdown
 
