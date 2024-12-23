@@ -42,6 +42,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 		libjpeg-dev\
 		zlib1g-dev\
 		libc6 &&\
+	apt-get remove -y gpg-agent && \
     apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
 
