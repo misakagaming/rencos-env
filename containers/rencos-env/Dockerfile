@@ -1,4 +1,5 @@
-FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
+FROM ubuntu:16.04
+#FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 #FROM nvidia/cuda:12.2.0-devel-ubuntu22.04
 
 
@@ -7,8 +8,6 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 # Python Version x.y
 ARG PYTHON_VERSION=3.6
 ARG PYLUCENE_VERSION=7.4.0
-
-RUN nvcc --version
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
@@ -24,15 +23,12 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 	
 RUN add-apt-repository ppa:deadsnakes/ppa
 
-RUN export DEBIAN_FRONTEND=noninteractive && apt-get --purge remove "*cublas*" "cuda*" "nsight*" 
+#RUN export DEBIAN_FRONTEND=noninteractive && apt-get --purge remove "*cublas*" "cuda*" "nsight*" 
 
-RUN rm -rf /usr/local/cuda*
+#RUN rm -rf /usr/local/cuda*
 
-RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
-RUN mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
-RUN wget https://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb
-RUN dpkg -i cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb
-RUN apt-key add /var/cuda-repo-10-2-local-10.2.89-440.33.01/7fa2af80.pub
+RUN dpkg -i cuda-repo-ubuntu1604-9-2-local_9.2.148-1_amd64.deb
+RUN apt-key add add /var/cuda-repo-9-2-local_9.2.148-1/7fa2af80.pub
 RUN apt-get update
 RUN apt-get -y install cuda
 
