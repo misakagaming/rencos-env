@@ -19,9 +19,22 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         build-essential \
 		checkinstall \
 		software-properties-common \
+		dpkg \
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 	
 RUN add-apt-repository ppa:deadsnakes/ppa
+
+RUN apt-get --purge remove "*cublas*" "cuda*" "nsight*" 
+
+RUN rm -rf /usr/local/cuda*
+
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
+RUN mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
+RUN wget https://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb
+RUN dpkg -i cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb
+RUN apt-key add /var/cuda-repo-10-2-local-10.2.89-440.33.01/7fa2af80.pub
+RUN apt-get update
+RUN apt-get -y install cuda
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
