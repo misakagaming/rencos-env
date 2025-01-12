@@ -21,7 +21,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 		dpkg \
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 	
-RUN add-apt-repository ppa:fkrull/deadsnakes
+#RUN add-apt-repository ppa:deadsnakes/ppa
 
 #RUN export DEBIAN_FRONTEND=noninteractive && apt-get --purge remove "*cublas*" "cuda*" "nsight*" 
 
