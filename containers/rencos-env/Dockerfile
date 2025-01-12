@@ -36,7 +36,7 @@ RUN mv cuda-ubuntu1604.pin /etc/apt/preferences.d/cuda-repository-pin-600
 RUN apt-key add 7fa2af80.pub
 RUN dpkg -i cuda-repo-ubuntu1604_9.2.148-1_amd64.deb
 RUN apt-get update
-RUN apt-get -y install cuda
+RUN apt-get -y install cuda --allow-unauthenticated
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
