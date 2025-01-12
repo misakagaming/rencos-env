@@ -5,7 +5,7 @@ FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Python Version x.y
-ARG PYTHON_VERSION=3.6
+ARG PYTHON_VERSION=3.8
 ARG PYLUCENE_VERSION=7.4.0
 
 RUN nvcc --version
@@ -20,13 +20,10 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 		checkinstall \
 		software-properties-common \
 		dpkg \
-    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
+    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*  \
+	&& apt-get --purge remove "*cublas*" "cuda*" "nsight*"  && rm -rf /usr/local/cuda*
 	
 RUN add-apt-repository ppa:deadsnakes/ppa
-
-RUN apt-get --purge remove "*cublas*" "cuda*" "nsight*" 
-
-RUN rm -rf /usr/local/cuda*
 
 RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
 RUN mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
