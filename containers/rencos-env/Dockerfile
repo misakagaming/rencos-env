@@ -30,9 +30,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 COPY cuda-repo-ubuntu1604_9.2.148-1_amd64.deb .
 COPY 7fa2af80.pub .
 
-
-RUN dpkg -i cuda-repo-ubuntu1604_9.2.148-1_amd64.deb
 RUN apt-key add 7fa2af80.pub
+RUN dpkg -i cuda-repo-ubuntu1604_9.2.148-1_amd64.deb
 RUN apt-get update
 RUN apt-get -y install cuda
 
