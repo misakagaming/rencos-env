@@ -30,6 +30,9 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 COPY cuda-repo-ubuntu1604_9.2.148-1_amd64.deb .
 COPY 7fa2af80.pub .
 
+
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-ubuntu1604.pin
+RUN mv cuda-ubuntu1604.pin /etc/apt/preferences.d/cuda-repository-pin-600
 RUN apt-key add 7fa2af80.pub
 RUN dpkg -i cuda-repo-ubuntu1604_9.2.148-1_amd64.deb
 RUN apt-get update
