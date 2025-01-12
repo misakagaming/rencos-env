@@ -21,14 +21,14 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 		dpkg \
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 	
-RUN add-apt-repository ppa:deadsnakes/ppa
+RUN add-apt-repository ppa:fkrull/deadsnakes
 
 #RUN export DEBIAN_FRONTEND=noninteractive && apt-get --purge remove "*cublas*" "cuda*" "nsight*" 
 
 #RUN rm -rf /usr/local/cuda*
 
-RUN dpkg -i cuda-repo-ubuntu1604-9-2-local_9.2.148-1_amd64.deb
-RUN apt-key add add /var/cuda-repo-9-2-local_9.2.148-1/7fa2af80.pub
+RUN dpkg -i cuda-repo-ubuntu1604_9.2.148-1_amd64.deb
+RUN apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
 RUN apt-get update
 RUN apt-get -y install cuda
 
