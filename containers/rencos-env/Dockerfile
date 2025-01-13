@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM aaii/cuda:9.2-cudnn7-devel-ubuntu18.04
 #FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 #FROM nvidia/cuda:12.2.0-devel-ubuntu22.04
 
@@ -27,16 +27,16 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 #RUN rm -rf /usr/local/cuda*
 
-COPY cuda-repo-ubuntu1604_9.2.148-1_amd64.deb .
-COPY 7fa2af80.pub .
+#COPY cuda-repo-ubuntu1604_9.2.148-1_amd64.deb .
+#COPY 7fa2af80.pub .
 
 
-RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-ubuntu1604.pin
-RUN mv cuda-ubuntu1604.pin /etc/apt/preferences.d/cuda-repository-pin-600
-RUN apt-key add 7fa2af80.pub
-RUN dpkg -i cuda-repo-ubuntu1604_9.2.148-1_amd64.deb
-RUN apt-get update
-RUN apt-get -y install cuda --allow-unauthenticated
+#RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-ubuntu1604.pin
+#RUN mv cuda-ubuntu1604.pin /etc/apt/preferences.d/cuda-repository-pin-600
+#RUN apt-key add 7fa2af80.pub
+#RUN dpkg -i cuda-repo-ubuntu1604_9.2.148-1_amd64.deb
+#RUN apt-get update
+#RUN apt-get -y install cuda --allow-unauthenticated
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
