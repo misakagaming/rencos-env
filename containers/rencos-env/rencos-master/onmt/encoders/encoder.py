@@ -49,4 +49,5 @@ class EncoderBase(nn.Module):
                 * final encoder state, used to initialize decoder
                 * memory bank for attention, `[src_len x batch x hidden]`
         """
+        src = src.cuda()
         raise NotImplementedError

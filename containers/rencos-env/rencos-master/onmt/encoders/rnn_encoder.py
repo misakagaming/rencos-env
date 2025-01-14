@@ -50,6 +50,7 @@ class RNNEncoder(EncoderBase):
 
     def forward(self, src, lengths=None):
         "See :obj:`EncoderBase.forward()`"
+        src = src.cuda()
         self._check_args(src, lengths)
 
         emb = self.embeddings(src)
@@ -65,10 +66,10 @@ class RNNEncoder(EncoderBase):
         memory_bank, encoder_final = self.rnn(packed_emb)
 
         if lengths is not None and not self.no_pack_padded_seq:
-            memory_bank = unpack(memory_bank)[0]
+            memory_bank = unpack(memory_bank)[0].cuda()
 
         if self.use_bridge:
-            encoder_final = self._bridge(encoder_final)
+            encoder_final = self._bridge(encoder_final).cuda()
         return encoder_final, memory_bank, lengths
 
     def _initialize_bridge(self, rnn_type,
@@ -83,7 +84,7 @@ class RNNEncoder(EncoderBase):
         # Build a linear layer for each
         self.bridge = nn.ModuleList([nn.Linear(self.total_hidden_dim,
                                                self.total_hidden_dim,
-                                               bias=True)
+                                               bias=True).cuda()
                                      for _ in range(number_of_states)])
 
     def _bridge(self, hidden):

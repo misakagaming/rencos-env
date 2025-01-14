@@ -15,9 +15,9 @@ class NMTModel(nn.Module):
 
     def __init__(self, encoder, decoder, refer=None):
         super(NMTModel, self).__init__()
-        self.encoder = encoder
+        self.encoder = encoder.cuda()
         self.refer = refer
-        self.decoder = decoder
+        self.decoder = decoder.cuda()
 
     def forward(self, src, tgt, lengths, ref=None):
         """Forward propagate a `src` and `tgt` pair for training.
@@ -55,6 +55,8 @@ class NMTModel(nn.Module):
         src = src.cuda()
         lengths = lengths.cuda()
         enc_state, memory_bank, lengths = self.encoder(src, lengths)
+        enc_state = enc_state.cuda()
+        memory_bank = memory_bank.cuda()
         self.decoder.init_state(src, memory_bank, enc_state)
         dec_out, attns = self.decoder(tgt, memory_bank,
                                       memory_lengths=lengths, ref=ref_tuple)
