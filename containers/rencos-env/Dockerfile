@@ -79,7 +79,8 @@ WORKDIR /usr/lib/jvm/default-java/jre/lib
 RUN ln -s ../../lib amd64
 
 # Java 11
-RUN java --version && javac --version
+#RUN java --version && javac --version
+RUN java && javac
 
 
 # Installing PyLucene
