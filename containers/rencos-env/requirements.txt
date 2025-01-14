@@ -1,6 +1,4 @@
 torchtext==0.3.1
--i https://download.pytorch.org/whl/torch_stable.html
-torch==0.4.1
 nltk==3.2.4
 ConfigArgParse==0.14.0
 gdown
