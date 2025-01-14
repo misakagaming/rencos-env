@@ -82,7 +82,7 @@ class Trainer(object):
     """
 
     def __init__(self, model, train_loss, valid_loss, optim,
-                 trunc_size=0, shard_size=32, data_type='text',
+                 trunc_size=0, shard_size=8, data_type='text',
                  norm_method="sents", grad_accum_count=1, n_gpu=1, gpu_rank=1,
                  gpu_verbose_level=0, report_manager=None, model_saver=None, use_refer=False):
         # Basic attributes.
