@@ -106,6 +106,8 @@ def main(opt, device_id):
 
     # Peek the first dataset to determine the data_type.
     # (All datasets have the same data_type).
+    print("batch size: ")
+    print(opt.batch_size)
     first_dataset = next(lazily_load_dataset("train", opt))
     data_type = first_dataset.data_type
 
