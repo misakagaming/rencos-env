@@ -125,7 +125,7 @@ def main(opt, device_id):
                     % (j, len(fields[feat].vocab)))
 
     # Build model.
-    model = build_model(model_opt, opt, fields, checkpoint)
+    model = build_model(model_opt, opt, fields, checkpoint).cuda()
     n_params, enc, dec = _tally_parameters(model)
     logger.info('encoder: %d' % enc)
     logger.info('decoder: %d' % dec)

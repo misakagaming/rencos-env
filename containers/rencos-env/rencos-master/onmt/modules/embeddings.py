@@ -198,10 +198,10 @@ class Embeddings(nn.Module):
         if self.position_encoding:
             for i, module in enumerate(self.make_embedding._modules.values()):
                 if i == len(self.make_embedding._modules.values()) - 1:
-                    source = module(source, step=step)
+                    source = module(source.cuda(), step=step)
                 else:
-                    source = module(source)
+                    source = module(source.cuda())
         else:
-            source = self.make_embedding(source)
+            source = self.make_embedding(source.cuda())
 
         return source

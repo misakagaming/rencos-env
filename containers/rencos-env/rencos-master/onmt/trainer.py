@@ -109,7 +109,6 @@ class Trainer(object):
                    you must disable target sequence truncating."""
 
         # Set model in training mode.
-        self.model.cuda()
         self.model.train()
 
     def train(self, train_iter_fct, valid_iter_fct, train_steps, valid_steps):
