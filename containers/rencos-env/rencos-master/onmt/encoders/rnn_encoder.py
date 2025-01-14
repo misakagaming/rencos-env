@@ -53,6 +53,7 @@ class RNNEncoder(EncoderBase):
         self._check_args(src, lengths)
 
         emb = self.embeddings(src)
+        emb =  emb.cuda()
         # s_len, batch, emb_dim = emb.size()
 
         packed_emb = emb
