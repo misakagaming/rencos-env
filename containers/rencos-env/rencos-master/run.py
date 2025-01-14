@@ -24,7 +24,7 @@ def main(opt, mode=2):
                         -data samples/%s/preprocessed/baseline_spl \
                         -save_model models/%s/baseline_spl \
                         -gpu_ranks 0 \
-                        -batch_size 32 \
+                        -batch_size 8 \
                         -optim adam \
                         -learning_rate 0.001 \
                         -dropout 0 \
@@ -35,7 +35,7 @@ def main(opt, mode=2):
         command1 = "python syntax.py %s" % lang
         os.system(command1)
         print('Semantic level...')
-        batch_size = 32 if lang == 'python' else 16
+        batch_size = 8 if lang == 'python' else 4
         command2 = "python translate.py -model models/%s/baseline_spl_step_100000.pt \
                         -src samples/%s/train/train.spl.src \
                         -output samples/%s/output/test.out \
@@ -50,7 +50,7 @@ def main(opt, mode=2):
         command3 = "python translate.py -model models/%s/baseline_spl_step_100000.pt \
                         -src samples/%s/test/test.spl.src \
                         -output samples/%s/test/test.ref.src.1 \
-                        -batch_size 32 \
+                        -batch_size 8 \
                         -gpu 0 \
                         -fast \
                         -max_sent_length %d \
@@ -67,7 +67,7 @@ def main(opt, mode=2):
                     -output samples/%s/output/test.out \
                     -min_length 3 \
                     -max_length %d \
-                    -batch_size 32 \
+                    -batch_size 8 \
                     -gpu 0 \
                     -fast \
                     -max_sent_length %d \
