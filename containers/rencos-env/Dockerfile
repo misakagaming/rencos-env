@@ -71,7 +71,7 @@ RUN ln -sf $(which python$PYTHON_VERSION) /usr/bin/python
 
 #RUN python --version
 
-RUN python -m pip install --upgrade pip
+RUN python3 -m pip install --upgrade pip
 
 #RUN which python$PYTHON_VERSION && which python && python --version
 
@@ -97,9 +97,9 @@ RUN curl https://archive.apache.org/dist/lucene/pylucene/pylucene-$PYLUCENE_VERS
 ENV PREFIX_PYTHON=/usr \
     JCC_JDK=/usr/lib/jvm/default-java \
     ANT=ant \
-    JCC='python -m jcc' \
+    JCC='python3 -m jcc' \
     NUM_FILES=10 \
-    PYTHON=python \
+    PYTHON=python3 \
     NO_SHARED=1
 	
 
@@ -121,11 +121,11 @@ RUN cd "pylucene-$PYLUCENE_VERSION/lucene-java-$PYLUCENE_VERSION/lucene" && \
 
 RUN cd "pylucene-$PYLUCENE_VERSION/jcc" && \
     ls -la && \
-    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python setup.py build && \
-    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python setup.py install && \
+    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3 setup.py build && \
+    NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3 setup.py install && \
     cd .. && \
-    make JCC="python -m jcc" ANT=ant PYTHON=python NUM_FILES=8&& \
-    make install JCC="python -m jcc" ANT=ant PYTHON=python NUM_FILES=8 && \
+    make JCC="python3 -m jcc" ANT=ant PYTHON=python3 NUM_FILES=8&& \
+    make install JCC="python3 -m jcc" ANT=ant PYTHON=python3 NUM_FILES=8 && \
     cd ../../
 
 
@@ -142,14 +142,14 @@ WORKDIR /
 
 
 
-RUN python -m pip install --upgrade pip \
-    && python -m venv --system-site-packages /opt/python/venv/base
+RUN python3 -m pip install --upgrade pip \
+    && python3 -m venv --system-site-packages /opt/python3/venv/base
 	
-COPY requirements.txt /opt/python/venv/base/
+COPY requirements.txt /opt/python3/venv/base/
 
-RUN /opt/python/venv/base/bin/python -m pip install -v "torch==0.4.1" -f https://download.pytorch.org/whl/cu92/torch_stable.html
+RUN /opt/python3/venv/base/bin/python3 -m pip install -v "torch==0.4.1" -f https://download.pytorch.org/whl/cu92/torch_stable.html
 	
-RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
+RUN /opt/python3/venv/base/bin/python3 -m pip install --no-cache-dir -r /opt/python3/venv/base/requirements.txt
 
 
 ENV CONDA_DIR /opt/conda
