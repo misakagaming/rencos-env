@@ -1,4 +1,5 @@
-FROM aaii/cuda:9.2-cudnn7-devel-ubuntu18.04
+FROM cogniac/nvidia-cuda:8.0-cudnn7-devel-ubuntu16.04-20190822
+#FROM aaii/cuda:9.2-cudnn7-devel-ubuntu18.04
 #FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 #FROM nvidia/cuda:12.2.0-devel-ubuntu22.04
 
@@ -40,11 +41,11 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
-        "python$PYTHON_VERSION-dev" \
-		"python$PYTHON_VERSION-distutils" \
+        python3-dev \
+		python3-distutils \
 		python3-setuptools \
         python3-pip \
-        "python$PYTHON_VERSION-venv" \
+        python3-venv \
 		libstdc++6 \
 		gcc-multilib\
 		libc6 \
