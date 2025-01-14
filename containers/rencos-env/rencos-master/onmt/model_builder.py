@@ -203,7 +203,7 @@ def build_base_model(model_opt, fields, gpu, checkpoint=None):
         print("we have cuda")
     else:
         print("we don't have cuda")
-    device = torch.device("cuda" if torch.cuda.is_available(): else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = onmt.models.NMTModel(encoder, decoder, refer)
 
     # Build Generator.
