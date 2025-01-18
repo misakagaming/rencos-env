@@ -1,12 +1,12 @@
-FROM aaii/cuda:9.2-cudnn7-devel-ubuntu18.04
-#FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
+#FROM aaii/cuda:9.2-cudnn7-devel-ubuntu18.04
+FROM nvidia/cuda:11.2.2-devel-ubuntu20.04
 #FROM nvidia/cuda:12.2.0-devel-ubuntu22.04
 
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Python Version x.y
-ARG PYTHON_VERSION=3.6
+ARG PYTHON_VERSION=3.8
 ARG PYLUCENE_VERSION=7.4.0
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
@@ -147,7 +147,7 @@ RUN python -m pip install --upgrade pip \
 	
 COPY requirements.txt /opt/python/venv/base/
 
-RUN /opt/python/venv/base/bin/python -m pip install -v "torch==0.4.1" -f https://download.pytorch.org/whl/cu92/torch_stable.html
+#RUN /opt/python/venv/base/bin/python -m pip install -v "torch==0.4.1" -f https://download.pytorch.org/whl/cu92/torch_stable.html
 	
 RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
