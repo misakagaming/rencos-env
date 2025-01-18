@@ -55,8 +55,6 @@ class NMTModel(nn.Module):
         src = src.cuda()
         lengths = lengths.cuda()
         enc_state, memory_bank, lengths = self.encoder(src, lengths)
-        enc_state = enc_state.cuda()
-        memory_bank = memory_bank.cuda()
         self.decoder.init_state(src, memory_bank, enc_state)
         dec_out, attns = self.decoder(tgt, memory_bank,
                                       memory_lengths=lengths, ref=ref_tuple)
