@@ -585,7 +585,7 @@ class Translator(object):
             length_penalty = ((5.0 + (step + 1)) / 6.0) ** alpha
 
             # Flatten probs into a list of possibilities.
-            curr_scores = log_probs // length_penalty
+            curr_scores = (log_probs / length_penalty).long()
             curr_scores = curr_scores.reshape(-1, beam_size * vocab_size)
             topk_scores, topk_ids = curr_scores.topk(beam_size, dim=-1)
 
