@@ -41,7 +41,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
 		python2.7 \
-		python2.7-venv \
+		pipx \
         "python$PYTHON_VERSION-dev" \
 		"python$PYTHON_VERSION-distutils" \
 		python3-setuptools \
@@ -52,7 +52,12 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 		libc6 \
 		 && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
+RUN ls /usr/bin | grep "python"
 
+RUN pipx install virtualenv
+RUN virtualenv --help
+
+RUN virtualenv -p /usr/bin/python2.7 --distribute temp-python
 
 #RUN python3.6 -m pip install --upgrade Pillow
 
@@ -68,7 +73,9 @@ RUN apt-get update && \
     git \
     default-jdk
   
-RUN ls /usr/bin | grep "python"
+
+
+
 RUN ln -sf $(which python$PYTHON_VERSION) /usr/bin/python
 
 #RUN python --version
