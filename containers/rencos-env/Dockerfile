@@ -155,10 +155,12 @@ RUN python -m pip install --upgrade pip \
 COPY requirements.txt /opt/python/venv/base/
 
 RUN /usr/bin/python2.7 --version
+
+RUN python -m virtualenv temp-python --python=/usr/bin/python2.7 --system-site-packages
 	
 RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
-RUN python -m virtualenv -p /usr/bin/python2.7/bin/python --system-site-packages temp-python
+
 
 
 COPY rencos-master .
