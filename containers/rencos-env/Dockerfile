@@ -51,8 +51,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 		 && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
 
-RUN python --versio
-RUN python3 --versionn
+RUN python --version
+RUN python3 --version
 #RUN python3.6 -m pip install --upgrade Pillow
 
 
