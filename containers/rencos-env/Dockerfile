@@ -41,6 +41,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
 		python2.7 \
+		python2.7-venv
         "python$PYTHON_VERSION-dev" \
 		"python$PYTHON_VERSION-distutils" \
 		python3-setuptools \
@@ -66,7 +67,8 @@ RUN apt-get update && \
     curl \
     git \
     default-jdk
-    
+  
+RUN ls /usr/bin | grep "python"
 RUN ln -sf $(which python$PYTHON_VERSION) /usr/bin/python
 
 #RUN python --version
@@ -140,7 +142,7 @@ COPY . .
 
 WORKDIR /
 
-RUN ls /usr/bin | grep "python"
+
 
 RUN python -m pip install --upgrade pip \
     && python -m venv --system-site-packages /opt/python/venv/base
