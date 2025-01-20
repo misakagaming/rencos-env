@@ -41,7 +41,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
 		python2.7 \
-		python-pip \
         "python$PYTHON_VERSION-dev" \
 		"python$PYTHON_VERSION-distutils" \
 		python3-setuptools \
@@ -151,7 +150,7 @@ COPY requirements.txt /opt/python/venv/base/
 RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
 	
-
+RUN /usr/bin/python2.7/bin/python -m venv --system-site-packages /opt/python/venv/temp-python
 
 
 COPY rencos-master .
