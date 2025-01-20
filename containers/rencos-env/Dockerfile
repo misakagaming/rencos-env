@@ -153,6 +153,8 @@ RUN python -m pip install --upgrade pip \
     && python -m venv --system-site-packages /opt/python/venv/base
 	
 COPY requirements.txt /opt/python/venv/base/
+
+RUN ls /usr/bin/python2.7/bin/
 	
 RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
