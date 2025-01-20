@@ -157,7 +157,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 # Put conda in path so we can use conda activate
 ENV PATH=$CONDA_DIR/bin:$PATH
 	
-RUN /opt/python-2.7/bin/python -m pip install virtualenv
+RUN /usr/python-2.7/bin/python -m pip install virtualenv
 
 RUN virtualenv -p /opt/bin/python2.7 --distribute temp-python
 
