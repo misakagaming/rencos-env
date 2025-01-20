@@ -140,6 +140,8 @@ COPY . .
 
 WORKDIR /
 
+RUN ls /usr/bin/ | grep "python"
+
 RUN /usr/bin/python2.7/bin/python -m pip install virtualenv
 
 RUN virtualenv -p /usr/bin/python2.7 --distribute temp-python
