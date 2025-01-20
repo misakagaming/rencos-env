@@ -156,7 +156,7 @@ COPY requirements.txt /opt/python/venv/base/
 
 RUN /usr/bin/python2.7 --version
 
-RUN python -m virtualenv temp-python --python=/usr/bin/python2.7 --system-site-packages
+RUN python -m virtualenv temp-python --python="/usr/bin/python2.7" --system-site-packages
 	
 RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
