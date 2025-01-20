@@ -140,7 +140,9 @@ COPY . .
 
 WORKDIR /
 
+RUN /usr/bin/python2.7/bin/python -m pip install virtualenv
 
+RUN virtualenv -p /usr/bin/python2.7 --distribute temp-python
 
 RUN python -m pip install --upgrade pip \
     && python -m venv --system-site-packages /opt/python/venv/base
@@ -149,17 +151,8 @@ COPY requirements.txt /opt/python/venv/base/
 	
 RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
-
-ENV CONDA_DIR /opt/conda
-RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
-    /bin/bash ~/miniconda.sh -b -p /opt/conda
-
-# Put conda in path so we can use conda activate
-ENV PATH=$CONDA_DIR/bin:$PATH
 	
-RUN /usr/python-2.7/bin/python -m pip install virtualenv
 
-RUN virtualenv -p /opt/bin/python2.7 --distribute temp-python
 
 
 COPY rencos-master .
