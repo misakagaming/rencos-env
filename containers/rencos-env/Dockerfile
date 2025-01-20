@@ -53,7 +53,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 		 && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
 RUN ls /usr/bin | grep "python"
-
+RUN echo "PATH=\$PATH:/usr/local/bin" >> ~/.bashrc
 RUN pipx install virtualenv
 RUN virtualenv --help
 
