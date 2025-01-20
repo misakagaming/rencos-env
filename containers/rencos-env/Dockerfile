@@ -41,7 +41,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
 		python2.7 \
-		pipx \
         "python$PYTHON_VERSION-dev" \
 		"python$PYTHON_VERSION-distutils" \
 		python3-setuptools \
@@ -53,11 +52,10 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 		 && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
 RUN ls /usr/bin | grep "python"
-RUN echo "PATH=\$PATH:/root/.local/bin" >> ~/.bashrc
-RUN pipx install virtualenv
-RUN virtualenv --help
+RUN python3 -m pip install --user virtualenv
+RUN python3 -m virtualenv --help
 
-RUN virtualenv -p /usr/bin/python2.7 --distribute temp-python
+
 
 #RUN python3.6 -m pip install --upgrade Pillow
 
@@ -158,8 +156,8 @@ COPY requirements.txt /opt/python/venv/base/
 	
 RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
-	
-RUN /usr/bin/python2.7/bin/python -m venv --system-site-packages /opt/python/venv/temp-python
+
+#RUN /opt/python/venv/base/bin/python virtualenv -p /usr/bin/python2.7 --distribute temp-python
 
 
 COPY rencos-master .
