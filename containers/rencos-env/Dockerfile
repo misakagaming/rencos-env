@@ -156,7 +156,7 @@ COPY requirements.txt /opt/python/venv/base/
 	
 RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
 
-RUN /opt/python/venv/base/bin/python -m virtualenv -p /usr/bin/python2.7 --system-site-packages temp-python
+RUN python -m virtualenv -p /usr/bin/python2.7/bin/python --system-site-packages temp-python
 
 
 COPY rencos-master .
