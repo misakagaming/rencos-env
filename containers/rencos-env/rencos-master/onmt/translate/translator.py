@@ -667,7 +667,7 @@ class Translator(object):
                 non_finished = non_finished.to(topk_ids.device)
                 topk_log_probs = topk_log_probs.index_select(0, non_finished)
                 batch_index = batch_index.index_select(0, non_finished)
-                select_indices = batch_index.view(-1)
+                select_indices = batch_index.view(-1).long()
                 alive_seq = predictions.index_select(0, non_finished) \
                     .view(-1, alive_seq.size(-1))
                 if alive_attn is not None:
@@ -789,7 +789,7 @@ class Translator(object):
                           beam_attn.data[j, :, :memory_lengths[j]])
                 select_indices_array.append(
                     b.get_current_origin() + j * beam_size)
-            select_indices = torch.cat(select_indices_array)
+            select_indices = torch.cat(select_indices_array).long()
 
             self.model.decoder.map_state(
                 lambda state, dim: state.index_select(dim, select_indices))
