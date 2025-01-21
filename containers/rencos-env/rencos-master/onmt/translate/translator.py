@@ -602,11 +602,11 @@ class Translator(object):
             batch_index = (
                     topk_beam_index
                     + beam_offset[:topk_beam_index.size(0)].unsqueeze(1))
-            select_indices = batch_index.view(-1)
+            select_indices = batch_index.view(-1).long()
 
             # Append last prediction.
             alive_seq = torch.cat(
-                [alive_seq.index_select(0, select_indices.long()),
+                [alive_seq.index_select(0, select_indices),
                  topk_ids.contiguous().view(-1, 1)], -1)
             if return_attention:
                 current_attn = attn.index_select(1, select_indices)
