@@ -19,7 +19,7 @@ def main(opt, mode=2):
                         -layers 1 \
                         -rnn_size 512 \
                         -rnn_type LSTM \
-                        -pre_word_vecs_enc custom_embeddings/concat_weights.txt \
+                        -pre_word_vecs_enc /custom_embeddings/concat_weigths.txt \
                         -global_attention mlp \
                         -data samples/%s/preprocessed/baseline_spl \
                         -save_model models/%s/baseline_spl \
