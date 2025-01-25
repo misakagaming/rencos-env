@@ -22,7 +22,7 @@ def main(opt, mode=2):
                         -src_word_vec_size 512 \
                         -tgt_word_vec_size 512 \
                         -word_vec_size 512 \
-                        -pre_word_vecs_enc /custom_embeddings/semantic_embeds.txt \
+                        -pre_word_vecs_enc /custom_embeddings/concat_weights.pt \
                         -global_attention mlp \
                         -data samples/%s/preprocessed/baseline_spl \
                         -save_model models/%s/baseline_spl \
