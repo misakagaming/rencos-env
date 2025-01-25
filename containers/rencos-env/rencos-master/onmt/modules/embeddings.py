@@ -182,6 +182,10 @@ class Embeddings(nn.Module):
                 self.word_lut.weight.data \
                     .copy_(pretrained[:, :self.word_vec_size])
             else:
+                print(f"custom embed dim: {pretrained.dim() }")
+                print(f"custom embed len: {pretrained.size(dim=1) }")
+                print(f"encoder embed dim: {self.word_lut.weight.data.dim() }")
+                print(f"encoder embed len: {self.word_lut.weight.data.size(dim=1) }")
                 self.word_lut.weight.data.copy_(pretrained)
             if fixed:
                 self.word_lut.weight.requires_grad = False
