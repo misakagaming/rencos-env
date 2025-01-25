@@ -21,6 +21,7 @@ def main(opt, mode=2):
                         -rnn_type LSTM \
                         -src_word_vec_size 512 \
                         -tgt_word_vec_size 512 \
+                        -word_vec_size 512 \
                         -pre_word_vecs_enc /custom_embeddings/concat_weigths.txt \
                         -global_attention mlp \
                         -data samples/%s/preprocessed/baseline_spl \
