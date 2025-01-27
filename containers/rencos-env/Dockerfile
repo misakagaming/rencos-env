@@ -165,7 +165,7 @@ RUN python2.7 -m virtualenv --system-site-packages temp-python
 
 RUN ls temp-python/bin
 	
-RUN /opt/python/venv/base/bin/python -m pip install --no-cache-dir -r /opt/python/venv/base/requirements.txt
+RUN /opt/python/venv/base/bin/python -m pip install -r /opt/python/venv/base/requirements.txt
 
 
 
