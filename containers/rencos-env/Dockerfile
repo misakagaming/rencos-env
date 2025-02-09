@@ -171,7 +171,6 @@ RUN /opt/python/venv/base/bin/python -m pip install -r /opt/python/venv/base/req
 
 
 COPY rencos-master .
-COPY TL-CodeSum-master .
 
 
 COPY entrypoint.sh /entrypoint.sh
