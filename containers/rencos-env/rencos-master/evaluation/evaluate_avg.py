@@ -52,4 +52,4 @@ def main(directory, len, total):
     print("Cider: \n"), cider
 
 if __name__ == '__main__':
-    main(sys.argv[1],eval(sys.argv[2]) eval(sys.argv[3]))
+    main(sys.argv[1],eval(sys.argv[2]), eval(sys.argv[3]))
