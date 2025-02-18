@@ -7,7 +7,7 @@ import numpy as np
 import sys
 import statistics
 
-def main(hyp, ref, directory, len, total):
+def main(directory, len, total):
     bleu1 = []
     bleu2 = []
     bleu3 = []
