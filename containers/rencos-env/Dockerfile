@@ -173,6 +173,7 @@ RUN ls temp-python/bin
 
 
 COPY rencos-master .
+COPY requirements.txt .
 
 
 COPY entrypoint.sh /entrypoint.sh
