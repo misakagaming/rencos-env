@@ -109,8 +109,7 @@ Resize the dynamic text.
 Start a record in a thread.
 Search commands for a command that matches the query string.
 Get the EEnum for the ifcControllerTypeEnum attribute.
-"Reads a
-	 object from the YAML."
+Reads a    object from the YAML.
 Write the language profile to the output stream.
 Create a new service tracker for the specified class.
 Convert a Castor exception to an XMLMappingException.
@@ -209,8 +208,7 @@ Add child properties.
 Create a query that returns objects that are in the given field
 Gets a specific image in an App Service Environment.
 Await for the condition.
-"Override toResponse to return a response object for a
- banner exception."
+Override toResponse to return a response object for a  banner exception.
 OverrideStartTag to provide the JS code for the cms calendar.
 Build OkHttpClient
 Initializes the page context.
@@ -238,8 +236,7 @@ Report an exception to the Agent.
 Gets a list of craveic acctic rules.
 Removes all properties of the given class from this property list.
 Get a list of all users.
-"Gets a string value from a
-    property path."
+Gets a string value from a      property path.
 Updates the record with the given model config.
 Build the set of unicode sets.
 Get a ClassNode from an input stream.
@@ -365,8 +362,7 @@ Calculate the dates of all dates.
 Setup the public and private key of the certificate.
 Format a quantity to be used in a log file.
 Reconnect to the JMX server.
-"Deserializes the
-Taxonomy object from the given input."
+Deserializes the  Taxonomy object from the given input.
 Method exceptionCaught.
 Set the value of a single attribute.
 Create a warning message for an exception.
@@ -484,8 +480,7 @@ Create a Hessian2Output object.
 Set permissions for a data format definition.
 Get a ToIntBiFunction from a CheckedToIntBiFunction.
 Creates a copy of the given Latency object.
-"Override openConnection to create a new instance of the
-   class."
+Override openConnection to create a new instance of the     class.
 Gets the typing object for a specific node.
 Method to get the next key from the iterator.
 Create an Ix object that selects the distinct elements until the key selector returns true.
@@ -521,8 +516,7 @@ Write an entry to the array.
 Divide the elements of the matrix by the given alpha value.
 Dispose of the object.
 Sets the doctype system and public attributes of the XML document.
-"Write a single octet of a
-   ."
+Write a single octet of a     .
 This method is used to get a KeyStoreFactoryBean from system properties.
 Get the bytes per pixel for a bitmap.
 Creates a copy of the given collections.
@@ -613,8 +607,7 @@ This method is called by the VFS when a file exists operation.
 Get the initial image for a recipient
 Find field in any parent class or super class.
 Execute an XML - RPC method.
-"Returns the mode of
-COOKIE from the specified CharSequence."
+Returns the mode of  COOKIE from the specified CharSequence.
 Create a TLVElement with the specified type and content.
 Initialize the places list view.
 A list of the licenses supported by the application.
@@ -734,8 +727,7 @@ Recovered the connection.
 Get Resource Url for GetProduct
 Removes the default action with the given id.
 Build the Retrofit.
-"Reads a
-CTYPE from the specified input stream."
+Reads a  CTYPE from the specified input stream.
 Load an SVG icon from the given URI.
 Sets the variable order.
 Modify the attribute.
@@ -768,8 +760,7 @@ Close the connection.
 Transform the image to vector.
 Resolves the table names.
 Check if the NCSS grid parameters are valid.
-"Add a
-   operand."
+Add a     operand.
 Creates a new ConcurrentMap.
 Generate the schema for this sequence.
 One - item operation with ones like operation
@@ -889,8 +880,7 @@ Sends a message to the underlying channel.
 Parse the matrix to get the transform string
 Encodes the given Boolean object into exactly 1 byte in descending order.
 Update the execution state asynchronously.
-"Register as regular
-	registerInternal."
+Register as regular  registerInternal.
 Clear the password.
 Gets pre - made widget HTML for a guild.
 Sets a cookie to be used in the response.
@@ -1033,8 +1023,7 @@ Get the package name of a class.
 Add a consumer to the list of consumers.
 Fired a new current solution event
 setContentView This method sets the contentView and adds it to the application.
-"Initiate a Transfer of a
- Taxonomy object."
+Initiate a Transfer of a   Taxonomy object.
 Publish a message to a channel.
 Gets the decimal 128 value.
 Creates a new metric context from a reference context.
@@ -1147,8 +1136,7 @@ Calculate the F_beta value for a single class attribute.
 Sets the datas.
 Convert a column name to an integer.
 Get status asynchronously
-"Returns the classname for a
-   ."
+Returns the classname for a     .
 Decodes the contents of the buffer from the RTMP connection.
 Add a copier to the cache manager.
 Compute the minimum of two sets of features
@@ -1450,8 +1438,7 @@ Converts a CBE SetAclAction to a proto type.
 Parse an inline string.
 This method is a convenience method for creating a LocalDateTime from a Date object.
 Transform a CRS URI to a CRS URI.
-"Writes the data of the
-   object to the specified output stream."
+Writes the data of the     object to the specified output stream.
 Add a new token to the token collection.
 Create a new empty vector2f generator.
 Filter on all data on all seeds.

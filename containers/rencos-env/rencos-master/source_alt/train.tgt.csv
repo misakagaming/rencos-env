@@ -1300,8 +1300,7 @@ Create an instance of an attribute key.
 Is the message a last message?
 Get the OCSP URI from the certificate.
 Registers a new NioTask with the given SelectableChannel.
-"Decodes the
-CTYPE."
+Decodes the CTYPE.
 Returns true if the stream has received a reply.
 WebSocket handshake.
 Handshake the WebSocket.
@@ -1418,8 +1417,7 @@ Get the counts for a given range of bytes.
 Transform counts to offsets.
 Sort key prefix array.
 Get the key prefix array counts.
-"Checks if the specified field is set to a value of a
-    object."
+Checks if the specified field is set to a value of a     object.
 Returns the next frame of the buffer that contains the specified number of bytes.
 Checks if field is set to a value of a CRAS_CORRECT_ELEMENT_SPECIFIC
 Initialize the batch.
@@ -1456,8 +1454,7 @@ Register an application with the given secret.
 Set the value of the specified index in the specified object at the specified offset.
 Returns true if the value at the given offset is set.
 Checks if any set bits are set in the given base object.
-"Get the value of the
-   ."
+Get the value of the    .
 Execute a statement in the session.
 Get the schema handle for a sequence of catalog name and schema name.
 Get the tables for the sequence number.
@@ -3244,8 +3241,7 @@ Get the return type information for a map function.
 Gets the unary operator return type.
 Gets the binary operator return type.
 Create TypeInformation for a single instance of a type.
-"Private helper method to create the type information for the
-	 operation."
+Private helper method to create the type information for the   operation.
 Create the TypeInformation from the input type.
 Create the type information for the sub types of the given type.
 Gets the type info factory.
@@ -3779,8 +3775,7 @@ Fill a bean with the data from the request.
 Converts the request to a bean.
 Gets the client IP from the request.
 Gets the client IP by header.
-"Gets the value of the
-	 header in the HttpServletRequest ignoring case."
+Gets the value of the    header in the HttpServletRequest ignoring case.
 Gets the value of a HTTP header.
 Checks if the request is a multipart request.
 Reads a map of cookies from the given request.
@@ -3901,8 +3896,7 @@ Converts an int value into a Unicode hex string.
 Appends a hex value to a StringBuilder.
 Encodes a byte array into a byte array of characters that are encoded in hexadecimal.
 Gets the DS object for the given setting and groups.
-"Logs a record of type CCN_
-	_LOG_DEPTH at the given level."
+Logs a record of type CCN_  _LOG_DEPTH at the given level.
 Converts the Hutool log level.
 Converts value to BigDecimal.
 Converts the value to a BigInteger.
@@ -3933,8 +3927,7 @@ Reads an XML document from a file or a string.
 Read a single XML document from the given input stream.
 Parses an XML string.
 Reads an object from an XML string.
-"Reads a
-	Object object from an XML input stream."
+Reads a   Object object from an XML input stream.
 Converts a DOM Document to a string.
 Copies the contents of the given document to the given file.
 Write a DOM node to a Writer.
@@ -4180,8 +4173,7 @@ Override this method to add all entries from the given map to the default group.
 Sends a text message to a recipient using the specified files.
 Sends an HTML message to a recipient.
 Send HTML to a collection of strings.
-"Creates a new instance of
-	Mail and sends it to the specified Tos subject and content."
+Creates a new instance of   Mail and sends it to the specified Tos subject and content.
 Reads the contents of the file into the specified collection.
 Reads the contents of the file into a set of lines.
 Reads the file and invokes the specified reader handler for each file.
@@ -4309,8 +4301,7 @@ Subpath before package name.
 Returns a list of dates that match the given pattern string.
 Converts this object to a bean.
 Add a value to the map.
-"Add an option to the
-	this object."
+Add an option to the   this object.
 Write the contents of this object to the specified writer.
 Initializes the object with data from the specified token stream.
 Creates a new watch monitor that will watch the given URL and register the given events.
@@ -4372,8 +4363,7 @@ Returns the charset of the given connection.
 Gets the string from the byte array.
 Add a parameter to a map.
 Writes the contents of this object to the specified file.
-"Decodes a
-	 byte array."
+Decodes a    byte array.
 Decodes a sequence of bytes starting at the given position.
 Parse a JSON object.
 Creates a new JSONObject from a ResourceBundle.
@@ -4488,12 +4478,10 @@ Handles a single row of a ResultSet.
 Creates an entity instance from a ResultSet.
 Handles a ResultSet object and returns a Collection of entities.
 Gets the value of a column from a ResultSet.
-"Initializes the
-	Velocity class."
+Initializes the   Velocity class.
 Initializes the application with the given template directory and charset.
 Creates a new instance of the VelocityEngine class.
-"Gets the content of a
-	 tag."
+Gets the content of a    tag.
 Write the Velocity template to a file.
 Write the contents of the given Velocity template to the given destination path.
 Write a Velocity template to a Writer.
@@ -4575,8 +4563,7 @@ Appends the specified element to the end of the list if the index is greater tha
 Write a block of content with a tab character.
 Convert a value to a string.
 Convenience method for creating a new JSONObject with a single property.
-"Default behavior for the
-	 interface."
+Default behavior for the    interface.
 Format a date object to a string.
 Returns the field with the given name.
 Gets the getter for the specified field.
@@ -4623,11 +4610,9 @@ Create a PreparedStatement for a batch of rows.
 Gets the generated key of long from the result set.
 Put a file type.
 Generates a PNG image of the specified size.
-"Generates a
-	 image from the given content and writes it to the given file."
+Generates a    image from the given content and writes it to the given file.
 Generates a NIC image from a string content.
-"Generates a
-	 image from a string content and QrConfig."
+Generates a    image from a string content and QrConfig.
 Generates a image of the specified size with the specified content.
 Generates a image of the specified size using the specified format.
 Generates a PNG image from a String of content.
@@ -4705,8 +4690,7 @@ Adds a form file to the request.
 Adds a form file to the request.
 Adds a form file to the request.
 Adds a file form to the request.
-"Execute a
-	 request."
+Execute a    request.
 Sets the Authorization header to be used for Basic authentication.
 Sends a redirect if posible.
 Send the request to the server.
@@ -4774,8 +4758,7 @@ Sets the showSql global setting.
 Creates a new DateBetween object.
 Returns the number of days between the two calendars in the month.
 Gets the number of days between the two calendar years.
-"Returns the value of a
-	 cell."
+Returns the value of a    cell.
 Gets the cell value.
 Gets the value of the N1QL cell.
 Gets the cell with the specified index or creates one if it does not exist.
@@ -4854,8 +4837,7 @@ Returns the similar number of characters in the string A and strB.
 Test if a character value is a valid Unicode character.
 Initializes the thread pool.
 Submits a task to the pool.
-"Parse a
-	 object from a long value."
+Parse a    object from a long value.
 Gets or creates a row from a sheet.
 Write a row.
 Shear the Y axis.
@@ -4940,8 +4922,7 @@ ValidateNotEmpty method.
 Validate equal.
 ValidateNotEqual method.
 Validate that two objects are not null and not equal.
-"Validate a string for a
-	 value."
+Validate a string for a    value.
 Checks if the given character sequence is a general sequence of characters.
 Validate a string to ensure that it is a letter.
 Returns true if the specified char sequence is uppercase.
@@ -5326,8 +5307,7 @@ Get the default extension.
 Update by query
 Delete a single record from the index.
 Build a table meta data table.
-"Put a
-CTYPE entry into the entries array."
+Put a  CTYPE entry into the entries array.
 Gets the mysql charset for a single class.
 Gets the java charset name.
 Await for an event.
@@ -5417,8 +5397,7 @@ Initializes the instance of the class.
 This method is used to get completion patterns.
 Returns true if there is at least one row of data in the buffer.
 Gets the next value from the database.
-"Gets the next value of a
-        record."
+Gets the next value of a          record.
 Fetch value from the database.
 Check if free slot at the given sequence is at the flush sequence.
 Update DML.
@@ -6074,8 +6053,7 @@ Creates a new instance of the PhasedBackoffWaitStrategy class with a lock on the
 Creates a new instance of the LiteBlockingWaitStrategy class with the specified spinTimeout and yieldTimeout timeouts.
 Creates a new instance of the PhasedBackoffWaitStrategy class with a sleeping wait strategy.
 Start the thread pool.
-"Sets the value of the
-    property."
+Sets the value of the     property.
 Add a Sequence to the Sequence array.
 Add the sequence while running.
 Run method.
@@ -8858,18 +8836,15 @@ This method is called to manage the task runner.
 Add a task into the queue.
 Shutdown a task.
 Compact the words array.
-"Append a single
-    word to the end of the list."
+Append a single      word to the end of the list.
 Append a sequence of data with the specified fillType
 Removes all zeros from the sequence.
 Converts an array of integer to a ConciseSet.
 Replaces the contents of this ConciseSet with the contents of the other ConciseSet.
 Returns the number of words in this list that are contained in the NUL - terminated words.
 Compare two intsets.
-"Write a
- object."
-"Reads a
-    object from an ObjectInputStream."
+Write a   object.
+Reads a      object from an ObjectInputStream.
 Load a segment in all locations.
 Translate an AggregateCall to a Druid aggregation.
 Checks if the aggregation is using an existing aggregation.
@@ -9018,8 +8993,7 @@ Get the data source sizes.
 Get the data source counts.
 Load a segment.
 Creates a GenericIndexed version one object.
-"Benchmarks a sequence of
-."
+Benchmarks a sequence of .
 Benchmarks a construct and iter operation.
 Benchmarks intersection and iter.
 Split the column name into a pair of column name and the group name.
@@ -9093,8 +9067,7 @@ Publish segments in background.
 Serialize a BloomKFilter object to an OutputStream.
 Deserialize a BloomKFilter from an input stream.
 Serialize the BloomKFilter object to the given ByteBuffer position and BloomKFilter.
-"Compute size bytes of a
-   ."
+Compute size bytes of a    .
 Add bytes to the buffer.
 Add a string to a byte buffer.
 isHandOffComplete returns true if the serverView is hand off complete
@@ -9388,8 +9361,7 @@ This method is called when the object is read from the object stream.
 Read the data from the input stream
 Gets the count of a single class instance from the matrix.
 Gets the predicted total count of all classes in the class hierarchy.
-"CSV output of the
-        table."
+CSV output of the         table.
 Gets the number of events in the sequence.
 Update the array for new axes
 Compute the offset of a set of strides.
@@ -10787,8 +10759,7 @@ Restore a MultiNormalizerHybrid object from an input stream.
 Filter the term.
 Quicksort a short array.
 Reset the sequence of elements in the sequence.
-"Map method for the
-   ."
+Map method for the    .
 Validate that the two variables are non - numerical
 Validate that the operation is being performed on the same type as the input variable.
 Reset the language.
@@ -11070,8 +11041,7 @@ Load an unclassified graph edge list file.
 Load a graph from a file.
 Load a graph from a file containing a list of vertices and edges.
 Pick training.
-"This method is called by the client to send a message to the local spark
-       "
+This method is called by the client to send a message to the local spark        
 Create a file batch from the local file system.
 Create file batches local.
 Creates a batch of FileBatches from a JavaRDD of file paths.
@@ -11191,8 +11161,7 @@ Visits this node then passes the given visitor to the appropriate method.
 List views.
 Try to resolve missing expression.
 Merge the pages of the given key types and channels.
-"Creates a QueryStateMachine for a
-   ."
+Creates a QueryStateMachine for a    .
 Extract a single page from the page buffer until there is no more pages.
 Get the join order of the nodes in the join graph.
 Add a key and value pair to the cache.
@@ -11298,8 +11267,7 @@ Create a new type variable constraint with a variadic bound.
 Read delta values from the input stream.
 Reads the base values from the input stream.
 Read the direct values of the ctype.
-"Read the repeat values of the value
-       ."
+Read the repeat values of the value        .
 read n bytes in a long
 Get the decimal digits of a type.
 Creates a HostAddress from a string of host and port.
@@ -11558,8 +11526,7 @@ Removes the element from the sequence.
 Move the specified row up.
 Move the row to the bottom of the table.
 Update the orders and fire notification.
-"This method is called to display a value of the
-CTYPE component in the table."
+This method is called to display a value of the  CTYPE component in the table.
 Checks if at least one child component is visible.
 Remove consecutive separators from popup menu.
 Insert separator if needed.
@@ -11645,17 +11612,14 @@ Show the Alert Edit Dialog.
 Reads a single RecordAlert object from the database.
 Deletes an alert.
 Updates the records in the database with the data of the specified Identity class.
-"Parse the
- banner parameters."
+Parse the   banner parameters.
 Convert a byte array to a hex string.
 Hash a string.
 Rot 13.
 Set the selected state of the button model.
 Loads a single file from the ZAP XML file.
-"Returns a boolean value for a
-CTYPE key."
-"Returns the int value for a
-CTYPE key."
+Returns a boolean value for a  CTYPE key.
+Returns the int value for a  CTYPE key.
 Returns the first child element of the base element that matches the specified tag.
 Returns an array of elements that are contained in the base element with the specified child tag.
 Gets the text value of the element.
@@ -11663,13 +11627,11 @@ Gets the extension authentication.
 Gets the extensionUserManagement.
 Returns true if the request has any parameters.
 This method initializes panelProxyChain
-"Main method that is invoked by the application to run the
- banner command."
+Main method that is invoked by the application to run the   banner command.
 Parse the HTML source.
 Process an attribute element.
 Remove a passive scanner from the list of scanners.
-"Override the method to return the value of the
-    property."
+Override the method to return the value of the      property.
 Append a message to the log panel.
 Initialize the toolbar.
 Validates that the dialog is tabbed.
@@ -11755,8 +11717,7 @@ Start the SpiderThread.
 Pause the scan.
 Stop the scan.
 Add a new panel to the policy panel.
-"This method initializes the
-CTYPE component."
+This method initializes the  CTYPE component.
 Gets the type 3 message.
 Get RC4 value.
 Gets the ntlm2 session response.
@@ -11922,8 +11883,7 @@ Add a path to the resource.
 Sets the filter for this node.
 Clear the parent filter.
 Handles the event related to the site node.
-"Initialize the grid bag layout for the
-       "
+Initialize the grid bag layout for the         
 This method is called by the application to initialize the popup menu.
 Returns the text of the skipped item.
 Generate report.
@@ -11988,8 +11948,7 @@ Gets the host name of the related HTTP request.
 Sets the getParams attribute of the HtmlUri object.
 Sets the cookie params.
 Initialize the component.
-"Gets the JPanel object that represents the
- relatives."
+Gets the JPanel object that represents the  relatives.
 This method initializes btnAdd
 This method initializes jScrollPane
 Deletes all urls of a type.
@@ -12056,8 +12015,7 @@ Gets the tokens from the response.
 Generates a form for the given message.
 Get the integer value from the element.
 Scan error.
-"Get an instance of the specified class of the
- banner class."
+Get an instance of the specified class of the   banner class.
 Add a proxy server to the registry.
 Remove a proxy server from the registry.
 Hook connect request proxy listeners.
@@ -12087,8 +12045,7 @@ Invoke a proxy script.
 Notifies all listeners that a script has changed.
 Returns the first implementation of the specified interface.
 Override method to check if the message container is enabled for the application.
-"Returns the escaped value of the
- itemId attribute."
+Returns the escaped value of the   itemId attribute.
 Checks if the operating system is on Kali.
 Encode a string for use in an XML entity.
 Probe the next plugin in the list.
@@ -12168,8 +12125,7 @@ This method initializes siteSelect
 Add a site to the siteModel.
 Add a site to the list of sites.
 Node selected.
-"Send and receive methods of the
- ctype."
+Send and receive methods of the   ctype.
 Override this method to add BINGO information to a message.
 Compare this object to another object.
 Match the header pattern for a HTTP response.
@@ -12210,16 +12166,14 @@ Checks if a given address is permitted by this class.
 Sets the permitted addresses of the NCSA class.
 Pause the scan.
 Resume the scan.
-"Initialize the fields of the
-       ."
+Initialize the fields of the         .
 Gets the JPanel that is used to display the National Entry Classes.
 Gets the tree param.
 This method initializes jPanel1
 This method initializes panelParam
 This method initializes txtHeadline
 Add a new param panel to the list of children.
-"Show the panel for the
-        child."
+Show the panel for the          child.
 Ensure that the node is visible.
 Initialize the param object.
 Validate the param object.
@@ -12229,10 +12183,8 @@ This method initializes jScrollPane1
 Checks if the domain is in the scope of the domain.
 Checks if the domain is always in scope.
 Sets the domains always in scope.
-"Sets the parameters attribute of the
-        class."
-"Append a
-CTYPE parameter to a StringBuilder."
+Sets the parameters attribute of the          class.
+Append a  CTYPE parameter to a StringBuilder.
 This method initializes the LogPanel object.
 Show alert add dialog.
 Purges the history of a list of hrefs.
@@ -12249,14 +12201,12 @@ Create a String from this buffer.
 Sets the length of the message.
 Build the params description
 This method initializes jPanel
-"This method is called to create the JPanel for the
-	 interface."
+This method is called to create the JPanel for the    interface.
 Gets the JButton that shows the OK button.
 This method initializes btnCancel
 Sets the forced user for the given context.
 This method initializes panelMisc
-"Returns a byte array containing the contents of the
-CTYPE record."
+Returns a byte array containing the contents of the  CTYPE record.
 Add a seed to the seed list.
 Add a seed for the root file.
 Sets the exclude list.
@@ -12265,8 +12215,7 @@ Fetch the seed list.
 Check if the thread is paused and wait for it to complete.
 This method is called after the task execution of the spider has finished execution.
 Notifies all listeners that the spider progress has been completed.
-"Initialize the related attributes of the
-        class."
+Initialize the related attributes of the          class.
 Creates a new session.
 Opens a new session.
 Creates a new untitled database and opens it.
@@ -12290,8 +12239,7 @@ This method initializes the addedCountNameLabel
 This method initializes the addedCountValueLabel property.
 Gets the Panel Misc component.
 Initialize the calendar.
-"Saves the parameters of the
-        entity."
+Saves the parameters of the          entity.
 Validate an ApiElement.
 Add the API options to this command.
 Returns true if the method is ignored.
@@ -12355,8 +12303,7 @@ Find the URL of the help set file.
 Enable help key.
 Show the help with the given index.
 Get the help icon.
-"Override to generate a request entity for the
-            language."
+Override to generate a request entity for the              language.
 Sets the value of a managed parameter.
 Add a parameter to the request body.
 Add the parameters to the request body.
@@ -12380,8 +12327,7 @@ Unpins all visible panels in the application.
 Add a single entry to the passed in hierarchical entries list.
 Analyse the HTTP response of a single node.
 Gets the suffix of the static suffix list.
-"Get a random path suffix for a
-        node."
+Get a random path suffix for a          node.
 Gets the rnd positive long.
 in order to analyse the node
 Check on start.
@@ -12639,8 +12585,7 @@ Check if the element has the given stereotype.
 Checks if the element has one of the given stereotypes.
 Check if the element has one of the specified stereotypes.
 Gets the annotation metadata for the given element.
-"Create a new instance of the
-                class."
+Create a new instance of the                 class.
 Resolves the default request factory.
 Create an EventLoopGroup with the specified number of threads and IO Ratio.
 Get all instances in the specified service ID.
@@ -13589,8 +13534,7 @@ Get the icomoon glyph.
 Load glyphs font.
 Load glyphs font.
 Enqueue an event to be processed by the Snackbar.
-"Initialize the
-   ."
+Initialize the    .
 Initialize the content container.
 check if the tableview column is grouped
 Set the expiry factory.
@@ -14510,8 +14454,7 @@ Closes the given chunk.
 list - list - list
 Get Leaderboard from DDK
 Fill the Frames object with the data from this object.
-"Override the default implementation of the
-    operator."
+Override the default implementation of the     operator.
 Load a param from a CaffeModel.
 This method is called by the DeepwaterCaffeModel to train a Caffe model.
 Initializes the block from the byte array.

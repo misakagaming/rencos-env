@@ -181,8 +181,7 @@ Send an exit message to a node.
 Gets the globus ID for the specified user ID.
 Gets the formula for the ServletContextInitParameterPhrase.
 Get the list of remote exceptions.
-"Run method for the
- banner transport."
+Run method for the   banner transport.
 Check popup.
 Returns a set of lines from a file that are lowercase.
 Synchronize VFS to RFS.
@@ -194,13 +193,11 @@ Visit an unknown type mirror.
 Remove an attribute from the attribute set.
 This method is used to check if a job instance is purgeable.
 Copies all the elements from the given array into this array.
-"Method to handle the
-    action"
+Method to handle the      action
 Find by owner.
 Get the NumberingSystem object for the given locale.
 Sets the key strength to weak.
-"Validates the
- operationType."
+Validates the   operationType.
 Put a Long value into the context.
 Scans a date part of a string.
 Gets the value of the attribute.
@@ -603,8 +600,7 @@ Register TaskConfig method.
 Sets the width of the cell.
 Returns a list of feature strings for the image.
 Gets the javascript resource references.
-"Initialize the controlling the controls for the
-        panel."
+Initialize the controlling the controls for the          panel.
 Verify that the path is a valid OEX file.
 This method is called when a bundle is removed from the bundle list.
 read a byte array from an input stream
@@ -676,8 +672,7 @@ Sets the container.
 readArray Method.
 Returns the coordinates of the available coordinates in this matrix.
 KeyDown action.
-"Example of reading a
-    resource."
+Example of reading a     resource.
 Send query and collect answers.
 Insert a job into the database or fetch a duplicate.
 Override the extended load method.
@@ -689,8 +684,7 @@ Listen by line.
 Call a method on the class.
 Invoke a method on a class object.
 Free the filters that have been set for this source object.
-"Gets the string value of
-   ."
+Gets the string value of     .
 Gets the estimated value of the Nth theta of the given Memory.
 Initialize the application scoped services.
 Returns the cp definition specification option value in the ordered set where cp specification option value in the ordered set.
@@ -772,8 +766,7 @@ Updates the bean value of the given component.
 Get the footprint of the record.
 Assert that the results are sorted by distance.
 wake up consumers in local session
-"Validates the
- operation."
+Validates the   operation.
 Write out the content of a sequence of bytes.
 Is not auto refresh param.
 Returns the suffix of the path.
@@ -807,14 +800,12 @@ Gets the String for sign.
 Create a list of tokens from the text.
 read an int from the stream
 Format message.
-"Add the toolbars for the
-   ."
+Add the toolbars for the    .
 Sets the value of the specified property in the entity.
 Sets the sorting mode.
 Add a context property.
 Get the GCBEZRG EClass.
-"Override to provide customization of the
-"
+Override to provide customization of the 
 Get the SCFL.
 Perform a GET request to the specified URL.
 Sets the actions value for this BaseProgressRule.
@@ -873,8 +864,7 @@ marshalls the given JobLogs object to the JSON object.
 Get the optional JSONArray associated with an index.
 Add a source to the source unit.
 Find a string in the sequence.
-"Validates the
- operation."
+Validates the   operation.
 Returns true if all elements of the iterable satisfy the predicate.
 Get the pixel value of the pixel at the x y
 Create an AttrAccept object from a string.
@@ -1306,8 +1296,7 @@ Append a pair of objects to the class.
 marshalls the given parameter object.
 Creates a ComponentView object.
 Returns the result of a multiplication of the specified value with the specified power of two bits.
-"Create a new instance of a
-        client."
+Create a new instance of a          client.
 Compare two Name objects.
 Get the name of the database table for a given DAO definition
 Check if the user is logged in interruptibly.
@@ -1495,8 +1484,7 @@ Query for download state
 Get the class loader for the best candidate.
 Populates the meta data.
 Decrypt an input stream using the specified key.
-"Creates mock result of
-	."
+Creates mock result of   .
 Replies the bus halts.
 Creates the SRE manifest file.
 Removes the specified key from this map.
