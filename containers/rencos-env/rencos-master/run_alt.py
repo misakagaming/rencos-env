@@ -12,7 +12,7 @@ def main(opt, mode=2):
                         -src_seq_length 10000 \
                         -tgt_seq_length 10000 \
                         -src_seq_length_trunc %d \
-                        -tgt_seq_length_trunc %d" % (lang, lang, lang, lang, lang, src_len, tgt_len)
+                        -tgt_seq_length_trunc %d" % (lang, src_len, tgt_len)
         os.system(command)
     elif opt == 'train':
         command = "python train.py -word_vec_size 256 \
@@ -44,7 +44,7 @@ def main(opt, mode=2):
                         -max_sent_length %d \
                         -refer 0 \
                         -lang %s \
-                        -search 2" % (lang, lang, lang, batch_size, src_len, lang)
+                        -search 2" % (lang, lang, batch_size, src_len, lang)
         os.system(command2)
         command3 = "python translate.py -model models/%s/baseline_spl_step_100000.pt \
                         -src source_alt/test.src.csv \
@@ -55,7 +55,7 @@ def main(opt, mode=2):
                         -max_sent_length %d \
                         -refer 0 \
                         -lang %s \
-                        -search 2" % (lang, lang, lang, src_len, lang)
+                        -search 2" % (lang, lang, src_len, lang)
         os.system(command3)
         print('Normalize...')
         command4 = "python normalize.py %s" % lang
@@ -72,7 +72,7 @@ def main(opt, mode=2):
                     -max_sent_length %d \
                     -refer %d \
                     -lang %s \
-                    -beam 5" % (lang, lang, lang, tgt_len, src_len, mode, lang)
+                    -beam 5" % (lang, lang, tgt_len, src_len, mode, lang)
         os.system(command)
         print('Done.')
 
