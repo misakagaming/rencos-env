@@ -4,11 +4,11 @@ import time
 
 def main(opt, mode=2):
     if opt == 'preprocess':
-        command = "python preprocess.py -train_src source_alt/train.src.csv \
-                        -train_tgt source_alt/train.tgt.csv \
-                        -valid_src source_alt/valid.src.csv \
-                        -valid_tgt source_alt/valid.tgt.csv \
-                        -save_data samples/%s/preprocessed/baseline_spl \
+        command = "python preprocess.py -train_src source_alt/java/train/train.src.csv \
+                        -train_tgt source_alt/java/train/train.tgt.csv \
+                        -valid_src source_alt/java/valid/valid.src.csv \
+                        -valid_tgt source_alt/java/valid/valid.tgt.csv \
+                        -save_data source_alt/%s/preprocessed/baseline_spl \
                         -src_seq_length 10000 \
                         -tgt_seq_length 10000 \
                         -src_seq_length_trunc %d \
@@ -20,7 +20,7 @@ def main(opt, mode=2):
                         -rnn_size 512 \
                         -rnn_type LSTM \
                         -global_attention mlp \
-                        -data samples/%s/preprocessed/baseline_spl \
+                        -data source_alt/%s/preprocessed/baseline_spl \
                         -save_model models/%s/baseline_spl \
                         -gpu_ranks 0 \
                         -batch_size 32 \
@@ -36,8 +36,8 @@ def main(opt, mode=2):
         print('Semantic level...')
         batch_size = 32 if lang == 'python' else 16
         command2 = "python translate.py -model models/%s/baseline_spl_step_100000.pt \
-                        -src source_alt/train.src.csv \
-                        -output samples/%s/output/test.out \
+                        -src source_alt/java/train/train.src.csv \
+                        -output source_alt/%s/output/test.out \
                         -batch_size %d \
                         -gpu 0 \
                         -fast \
@@ -47,8 +47,8 @@ def main(opt, mode=2):
                         -search 2" % (lang, lang, batch_size, src_len, lang)
         os.system(command2)
         command3 = "python translate.py -model models/%s/baseline_spl_step_100000.pt \
-                        -src source_alt/test.src.csv \
-                        -output samples/%s/test/test.ref.src.1 \
+                        -src source_alt/java/test/test.src.csv \
+                        -output source_alt/%s/test/test.ref.src.1 \
                         -batch_size 32 \
                         -gpu 0 \
                         -fast \
@@ -62,8 +62,8 @@ def main(opt, mode=2):
         os.system(command4)
     elif opt == 'translate':
         command = "python translate.py -model models/%s/baseline_spl_step_100000.pt \
-                    -src source_alt/test.src.csv \
-                    -output samples/%s/output/test.out \
+                    -src source_alt/java/test/test.src.csv \
+                    -output source_alt/%s/output/test.out \
                     -min_length 3 \
                     -max_length %d \
                     -batch_size 32 \
