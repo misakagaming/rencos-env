@@ -62,7 +62,7 @@ def main(opt, mode=2):
         os.system(command4)
     elif opt == 'translate':
         command = "python translate_alt.py -model models/%s/baseline_spl_step_100000.pt \
-                    -src source_alt/java/test/test.spl.src \
+                    -src source_alt/java/test/test.txt.src \
                     -output source_alt/%s/output/test.out \
                     -min_length 3 \
                     -max_length %d \
