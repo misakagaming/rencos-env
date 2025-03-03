@@ -37,7 +37,7 @@ def main(opt, mode=2):
         batch_size = 32 if lang == 'python' else 16
         command2 = "python translate_alt.py -model models/%s/baseline_spl_step_100000.pt \
                         -src source_alt/java/train/train.spl.src \
-                        -output source_alt/%s/output/test.out \
+                        -output source_alt/%s/output/train.out \
                         -batch_size %d \
                         -gpu 0 \
                         -fast \
@@ -47,7 +47,7 @@ def main(opt, mode=2):
                         -search 2" % (lang, lang, batch_size, src_len, lang)
         os.system(command2)
         command3 = "python translate_alt.py -model models/%s/baseline_spl_step_100000.pt \
-                        -src source_alt/java/test/test.spl.src \
+                        -src source_alt/java/test/test.txt.src \
                         -output source_alt/%s/test/test.ref.src.1 \
                         -batch_size 32 \
                         -gpu 0 \
