@@ -63,8 +63,8 @@ def main(opt, mode=2):
         os.system(command4)
     elif opt == 'translate':
         command = "python translate.py -model models/%s/baseline_spl_step_100000.pt \
-                    -src samples/%s/test/test.txt.src \
-                    -output samples/%s/test/test.txt.tgt \
+                    -src samples/%s/test/test.spl.src \
+                    -output samples/%s/output/test.out \
                     -min_length 3 \
                     -max_length %d \
                     -batch_size 32 \
