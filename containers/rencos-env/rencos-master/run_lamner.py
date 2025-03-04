@@ -52,7 +52,7 @@ def main(opt, mode=2):
         os.system(command2)
         command3 = "python translate.py -model models/%s/baseline_spl_step_100000.pt \
                         -src samples/%s/test/test.txt.src \
-                        -output samples/%s/test/test.ref.src.1 \
+                        -output samples/%s/test/test.txt.tgt \
                         -batch_size 32 \
                         -gpu 0 \
                         -fast \
