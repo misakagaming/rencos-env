@@ -22,7 +22,7 @@ def main(opt):
                          batch_size=opt.batch_size,
                          attn_debug=opt.attn_debug,
                          search_mode=opt.search, threshold=-1,
-                         ref_path='source/{}/test/test.ref.src'.format(lang))
+                         ref_path='samples/{}/test/test.ref.src'.format(lang))
     # translator.evaluate(ref_path='samples/{}/test/tgt-test.txt'.format(lang), hyp_path=opt.output)
 
 
