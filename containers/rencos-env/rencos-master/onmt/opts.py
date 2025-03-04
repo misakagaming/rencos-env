@@ -392,7 +392,7 @@ def train_opts(parser):
               help="""Maximum batches of words in a sequence to run
                         the generator on in parallel. Higher is faster, but
                         uses more memory.""")
-    group.add('--train_steps', '-train_steps', type=int, default=10000,
+    group.add('--train_steps', '-train_steps', type=int, default=100000,
               help='Number of training steps')
     group.add('--epochs', '-epochs', type=int, default=0,
               help='Deprecated epochs see train_steps')
