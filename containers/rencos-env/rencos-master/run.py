@@ -36,7 +36,7 @@ def main(opt, mode=2):
         os.system(command1)
         print('Semantic level...')
         batch_size = 32 if lang == 'python' else 16
-        command2 = "python translate.py -model models/%s/baseline_spl_step_100000.pt \
+        command2 = "python translate.py -model models/%s/baseline_spl_step_10000.pt \
                         -src source/%s/train/train.spl.src \
                         -output source/%s/output/test.out \
                         -batch_size %d \
@@ -47,7 +47,7 @@ def main(opt, mode=2):
                         -lang %s \
                         -search 2" % (lang, lang, lang, batch_size, src_len, lang)
         os.system(command2)
-        command3 = "python translate.py -model models/%s/baseline_spl_step_100000.pt \
+        command3 = "python translate.py -model models/%s/baseline_spl_step_10000.pt \
                         -src source/%s/test/test.spl.src \
                         -output source/%s/test/test.ref.src.1 \
                         -batch_size 32 \
@@ -62,7 +62,7 @@ def main(opt, mode=2):
         command4 = "python normalize.py %s" % lang
         os.system(command4)
     elif opt == 'translate':
-        command = "python translate.py -model models/%s/baseline_spl_step_100000.pt \
+        command = "python translate.py -model models/%s/baseline_spl_step_10000.pt \
                     -src source/%s/test/test.spl.src \
                     -output source/%s/output/test.out \
                     -min_length 3 \
