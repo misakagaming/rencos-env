@@ -41,7 +41,7 @@ def main(opt, mode=2):
         batch_size = 32 if lang == 'python' else 16
         command2 = "python translate.py -model models/%s/baseline_spl_step_100000.pt \
                         -src samples/%s/train/train.spl.src \
-                        -output samples/%s/output/train.out \
+                        -output samples/%s/output/test.out \
                         -batch_size %d \
                         -gpu 0 \
                         -fast \
@@ -67,7 +67,7 @@ def main(opt, mode=2):
     elif opt == 'translate':
         command = "python translate.py -model models/%s/baseline_spl_step_100000.pt \
                     -src samples/%s/test/test.txt.src \
-                    -output samples/%s/output/test.out \
+                    -output samples/%s/test/test.out \
                     -min_length 3 \
                     -max_length %d \
                     -batch_size 32 \
