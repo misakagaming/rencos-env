@@ -10,7 +10,7 @@ import onmt.opts
 
 def main(opt):
     translator = build_translator(opt, report_score=True)
-    if not os.path.exists('samples/{}/indexes/codev1.pt'.format(lang)):
+    if not os.path.exists('source/{}/indexes/codev1.pt'.format(lang)):
         print('Index documents...')
         translator.index_documents(src_path=opt.src,batch_size=opt.batch_size)
         exit(0)
@@ -22,7 +22,7 @@ def main(opt):
                          batch_size=opt.batch_size,
                          attn_debug=opt.attn_debug,
                          search_mode=opt.search, threshold=-1,
-                         ref_path='samples/{}/test/test.ref.src'.format(lang))
+                         ref_path='source/{}/test/test.ref.src'.format(lang))
     # translator.evaluate(ref_path='samples/{}/test/tgt-test.txt'.format(lang), hyp_path=opt.output)
 
 
