@@ -2,7 +2,7 @@ import os
 import sys
 import time
 
-def main(opt, mode=2):
+def main(opt, seed, mode=2):
     if opt == 'preprocess':
         command = "python preprocess.py -train_src source_alt/java/train/train.spl.src \
                         -train_tgt source_alt/java/train/train.txt.tgt \
@@ -12,7 +12,8 @@ def main(opt, mode=2):
                         -src_seq_length 10000 \
                         -tgt_seq_length 10000 \
                         -src_seq_length_trunc %d \
-                        -tgt_seq_length_trunc %d" % (lang, src_len, tgt_len)
+                        -tgt_seq_length_trunc %d \
+                        -seed %d" % (lang, src_len, tgt_len, seed)
         os.system(command)
     elif opt == 'train':
         command = "python train.py -word_vec_size 256 \
@@ -27,7 +28,8 @@ def main(opt, mode=2):
                         -optim adam \
                         -learning_rate 0.001 \
                         -dropout 0 \
-                        -encoder_type brnn" % (lang, lang)
+                        -encoder_type brnn \
+                        -seed %d" % (lang, lang, seed)
         os.system(command)
     elif opt == 'retrieval':
         print('Syntactic level...')
@@ -44,7 +46,8 @@ def main(opt, mode=2):
                         -max_sent_length %d \
                         -refer 0 \
                         -lang %s \
-                        -search 2" % (lang, lang, batch_size, src_len, lang)
+                        -search 2 \
+                        -seed %d" % (lang, lang, batch_size, src_len, lang, seed)
         os.system(command2)
         command3 = "python translate_alt.py -model models/%s/baseline_spl_step_100000.pt \
                         -src source_alt/java/test/test.txt.src \
@@ -55,7 +58,8 @@ def main(opt, mode=2):
                         -max_sent_length %d \
                         -refer 0 \
                         -lang %s \
-                        -search 2" % (lang, lang, src_len, lang)
+                        -search 2 \
+                        -seed %d" % (lang, lang, src_len, lang, seed)
         os.system(command3)
         print('Normalize...')
         command4 = "python normalize.py %s" % lang
@@ -72,7 +76,8 @@ def main(opt, mode=2):
                     -max_sent_length %d \
                     -refer %d \
                     -lang %s \
-                    -beam 5" % (lang, lang, tgt_len, src_len, mode, lang)
+                    -beam 5 \
+                    -seed %d" % (lang, lang, tgt_len, src_len, mode, lang, seed)
         os.system(command)
         print('Done.')
 
@@ -96,6 +101,8 @@ if __name__ == '__main__':
     else:
         if option == 'translate':
             mode = int(sys.argv[3])
-            main(option, mode)
+            seed = int(sys.argv[4])
+            main(option, seed, mode)
         else:
-            main(option)
+            seed = int(sys.argv[3])
+            main(option, seed)
