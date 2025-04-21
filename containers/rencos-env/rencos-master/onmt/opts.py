@@ -219,12 +219,12 @@ def preprocess_opts(parser):
     group.add('--features_vocabs_prefix', '-features_vocabs_prefix',
               type=str, default='',
               help="Path prefix to existing features vocabularies")
-    group.add('--src_vocab_size', '-src_vocab_size', type=int, default=18858,
+    group.add('--src_vocab_size', '-src_vocab_size', type=int, default=50625,
               help="Size of the source vocabulary")
-    group.add('--ref_vocab_size', '-ref_vocab_size', type=int, default=18858,
+    group.add('--ref_vocab_size', '-ref_vocab_size', type=int, default=50625,
               help="Size of the reference vocabulary")
-    group.add('--tgt_vocab_size', '-tgt_vocab_size', type=int, default=18858,
-              help="Size of the target vocabulary")
+    group.add('--tgt_vocab_size', '-tgt_vocab_size', type=int, default=50625,
+              help="Size of the target vocabulary, 18858")
 
     group.add('--src_words_min_frequency',
               '-src_words_min_frequency', type=int, default=0)
