@@ -77,8 +77,7 @@ def main(opt, seed, mode=2):
                     -max_sent_length %d \
                     -refer %d \
                     -lang %s \
-                    -beam 5 \
-                    -seed %d" % (lang, lang, lang, tgt_len, src_len, mode, lang, seed)
+                    -beam 5" % (lang, lang, lang, tgt_len, src_len, mode, lang)
         os.system(command)
         print('Done.')
 
