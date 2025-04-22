@@ -47,8 +47,7 @@ def main(opt, seed=3445, mode=2):
                         -max_sent_length %d \
                         -refer 0 \
                         -lang %s \
-                        -search 2 \
-                        -seed %d" % (lang, lang, lang, batch_size, src_len, lang, seed)
+                        -search 2" % (lang, lang, lang, batch_size, src_len, lang)
         os.system(command2)
         command3 = "python translate.py -model models/%s/baseline_spl_step_100000.pt \
                         -src source/%s/test/test.spl.src \
@@ -59,8 +58,7 @@ def main(opt, seed=3445, mode=2):
                         -max_sent_length %d \
                         -refer 0 \
                         -lang %s \
-                        -search 2 \
-                        -seed %d" % (lang, lang, lang, src_len, lang, seed)
+                        -search 2" % (lang, lang, lang, src_len, lang)
         os.system(command3)
         print('Normalize...')
         command4 = "python normalize.py %s" % lang
