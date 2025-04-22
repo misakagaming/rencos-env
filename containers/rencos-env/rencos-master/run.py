@@ -3,7 +3,7 @@ import sys
 import time
 
 
-def main(opt, seed, mode=2):
+def main(opt, seed=3445, mode=2):
     if opt == 'preprocess':
         command = "python preprocess.py -train_src source/%s/train/train.spl.src \
                         -train_tgt source/%s/train/train.txt.tgt \
